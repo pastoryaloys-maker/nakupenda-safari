@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nakupenda Safari Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Nakupenda Safari</h1>
+        <div id="ai-agent">AI Sales Agent: How can I assist you?</div>
+    </header>
+    <main>
+        <section id="tours">
+            <h2>Available Tours</h2>
+            <div class="tour-card">
+                <h3>Safari Tour 1</h3>
+                <p>Explore the beautiful landscapes.</p>
+                <button onclick="openBookingModal(1)">Book Now</button>
+            </div>
+            <div class="tour-card">
+                <h3>Safari Tour 2</h3>
+                <p>Experience wildlife like never before.</p>
+                <button onclick="openBookingModal(2)">Book Now</button>
+            </div>
+            <!-- Add more tour cards as needed -->
+        </section>
+        <div id="booking-modal" style="display:none;">
+            <h2>Booking Modal</h2>
+            <form id="booking-form">
+                <label for="tour">Select Tour:</label>
+                <select id="tour" name="tour"></select>
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+                <button type="submit">Confirm Booking</button>
+            </form>
+            <button onclick="closeBookingModal()">Close</button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 Nakupenda Safari. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+<script>
+function openBookingModal(tourId) {
+    document.getElementById('booking-modal').style.display = 'block';
+    document.getElementById('tour').value = tourId;
+}
+function closeBookingModal() {
+    document.getElementById('booking-modal').style.display = 'none';
+}
+</script>
