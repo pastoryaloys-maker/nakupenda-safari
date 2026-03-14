@@ -1,55 +1,535 @@
+As an AI, I do not have the ability to directly host or publish websites to a public domain (like `www.nakupenda.com`) myself. However, I can guide you through the easiest and fastest ways to get your website online **right now** for free.
+
+Here are the three best methods to publish your website instantly:
+
+### Method 1: The Fastest Way (Netlify Drop)
+This is the easiest method. You don't even need to create an account to test it.
+
+1.  **Save Your Code:** Copy the final code I provided above into a text file on your computer and name it `index.html`.
+2.  **Go to Netlify Drop:** Open your browser and go to [https://app.netlify.com/drop](https://app.netlify.com/drop).
+3.  **Drag and Drop:** Simply drag your `index.html` file from your computer and drop it onto the web page.
+4.  **Done!** Netlify will instantly generate a link for you (e.g., `https://random-name.netlify.app`).
+
+### Method 2: Quick Preview (CodePen)
+If you just want to see it live and share a link immediately without saving files:
+
+1.  Go to [CodePen.io](https://codepen.io/pen/).
+2.  Paste the HTML code into the **HTML** section.
+3.  Paste the `<style>...</style>` content into the **CSS** section.
+4.  Paste the `<script>...</script>` content into the **JS** section.
+5.  Save it, and you will have a live link to share.
+
+### Method 3: GitHub Pages (Best for Permanent Hosting)
+If you want a permanent, professional link:
+
+1.  Create a free account on [GitHub](https://github.com).
+2.  Create a new "Repository" and name it `nakupenda-safari`.
+3.  Click "Add file" > "Upload files" and upload your `index.html`.
+4.  Go to "Settings" > "Pages".
+5.  Under "Branch", select "Main" and save.
+6.  Your site will be live at `https://your-username.github.io/nakupenda-safari`.
+
+---
+
+### Final Code to Save
+Here is the complete, final version of your website code. **Copy everything below, save it as `index.html`, and you are ready to publish.**
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nakupenda Safari Booking</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Nakupenda Isles Safari - Professional Booking System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077b3;
+            --deep-ocean: #003d5c;
+            --sunset-orange: #f7941d;
+            --light-bg: #f4fbfd;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --shadow-soft: 0 8px 32px rgba(0, 77, 128, 0.1);
+            --shadow-strong: 0 10px 40px rgba(0, 77, 128, 0.2);
+            --radius: 16px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* --- Decorative Background Elements --- */
+        .bg-shape {
+            position: fixed; z-index: -1; border-radius: 50%; filter: blur(80px); opacity: 0.6;
+        }
+        .shape-1 { top: -100px; left: -100px; width: 500px; height: 500px; background: rgba(0, 119, 179, 0.2); }
+        .shape-2 { bottom: -100px; right: -100px; width: 600px; height: 600px; background: rgba(247, 148, 29, 0.15); }
+
+        /* --- Header --- */
+        header {
+            background: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--deep-ocean);
+        }
+        
+        .logo-wrapper {
+            width: 50px; 
+            height: 50px; 
+            border-radius: 50%;
+            overflow: hidden; 
+            background: white; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #eee;
+        }
+
+        .logo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            padding: 2px; 
+        }
+
+        .brand-text h1 { font-size: 1.2rem; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.5px; }
+        .brand-text span { font-size: 0.8rem; color: var(--sunset-orange); font-weight: 600; }
+
+        nav { display: flex; gap: 10px; }
+        .nav-btn {
+            background: none; border: none; cursor: pointer; padding: 8px;
+            color: var(--primary-blue); font-size: 1.5rem; transition: transform 0.2s;
+        }
+        .nav-btn:hover { transform: scale(1.1); }
+
+        /* --- Main Layout --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+        /* --- Agent Section --- */
+        .agent-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-strong);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agent-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--sunset-orange));
+        }
+
+        .avatar-container { margin-bottom: 1rem; position: relative; display: inline-block; }
+        
+        .avatar {
+            width: 120px;   
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden; 
+            border: 4px solid white;
+            box-shadow: 0 4px 15px rgba(0, 119, 179, 0.3);
+            transition: transform 0.3s ease;
+            background-color: #f0f0f0;
+        }
+        
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .avatar.speaking {
+            animation: pulse 1.5s infinite;
+            border-color: var(--sunset-orange);
+            transform: scale(1.05);
+        }
+
+        .status-badge {
+            position: absolute; bottom: 10px; right: 5px; 
+            width: 20px; height: 20px; background: #4caf50; border-radius: 50%; border: 3px solid white;
+        }
+
+        h2 { font-size: 1.8rem; color: var(--deep-ocean); margin-bottom: 0.5rem; }
+        p.subtitle { color: #666; margin-bottom: 1.5rem; font-size: 0.95rem; }
+
+        .action-btn {
+            background: linear-gradient(135deg, var(--sunset-orange), #e68512);
+            color: white; border: none; padding: 1rem 2rem; border-radius: 50px;
+            font-size: 1.1rem; font-weight: 600; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(247, 148, 29, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex; align-items: center; gap: 10px;
+        }
+        .action-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(247, 148, 29, 0.5); }
+        .action-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        /* --- Tour Grid --- */
+        .section-title { margin-bottom: 1.5rem; border-left: 5px solid var(--sunset-orange); padding-left: 15px; }
+        
+        .tour-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tour-card {
+            background: white; border-radius: var(--radius); overflow: hidden;
+            box-shadow: var(--shadow-soft); transition: all 0.3s ease;
+            display: flex; flex-direction: column;
+        }
+
+        .tour-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-strong); }
+
+        .card-img {
+            height: 200px; width: 100%; object-fit: cover;
+            background-color: #ddd;
+        }
+        .card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-title { font-size: 1.2rem; color: var(--primary-blue); margin-bottom: 0.5rem; }
+        .card-desc { font-size: 0.9rem; color: #666; margin-bottom: 1rem; flex-grow: 1; }
+        
+        .card-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid #eee; padding-top: 1rem; margin-top: auto;
+        }
+        .price { font-weight: 700; color: var(--deep-ocean); font-size: 1.1rem; }
+        
+        .book-btn {
+            background: var(--primary-blue); color: white; border: none;
+            padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .book-btn:hover { background: var(--deep-ocean); }
+
+        /* --- Modals --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(5px);
+            display: none; align-items: center; justify-content: center; z-index: 1000;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
+
+        .modal {
+            background: white; padding: 2rem; border-radius: var(--radius);
+            width: 90%; max-width: 500px; position: relative;
+            transform: scale(0.9); transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal { transform: scale(1); }
+
+        .close-btn {
+            position: absolute; top: 15px; right: 15px; background: none; border: none;
+            font-size: 1.5rem; cursor: pointer; color: #888;
+        }
+
+        /* Form Styling */
+        .form-group { margin-bottom: 1.2rem; text-align: left; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333; }
+        
+        input, select, textarea {
+            width: 100%; padding: 0.8rem; border: 2px solid #eee; border-radius: 8px;
+            font-family: inherit; transition: border-color 0.2s;
+        }
+        input:focus, select:focus, textarea:focus { border-color: var(--primary-blue); outline: none; }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(247, 148, 29, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(247, 148, 29, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(247, 148, 29, 0); }
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Background Decor -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+
     <header>
-        <h1>Welcome to Nakupenda Safari</h1>
-        <div id="ai-agent">AI Sales Agent: How can I assist you?</div>
+        <a href="#" class="brand">
+            <div class="logo-wrapper">
+                <img src="https://z-cdn-media.chatglm.cn/files/6c5ae172-0dd9-475f-a241-90af344ae284.png?auth_key=1873353302-22b06e850fbd4914adb994bd8532827d-0-c5c67625cebc49c51cca844c9690d8e7" alt="Nakupenda Logo">
+            </div>
+            <div class="brand-text">
+                <h1>Nakupenda Isles</h1>
+                <span>Safari Zanzibar</span>
+            </div>
+        </a>
+        <nav>
+            <button class="nav-btn" onclick="openSettings()" title="Agent Settings">⚙️</button>
+        </nav>
     </header>
-    <main>
-        <section id="tours">
-            <h2>Available Tours</h2>
-            <div class="tour-card">
-                <h3>Safari Tour 1</h3>
-                <p>Explore the beautiful landscapes.</p>
-                <button onclick="openBookingModal(1)">Book Now</button>
+
+    <div class="container">
+        
+        <!-- AI Agent Section -->
+        <section class="agent-card">
+            <div class="avatar-container">
+                <div id="avatar" class="avatar">
+                    <img src="https://z-cdn-media.chatglm.cn/files/698ed9d8-8dde-45e8-881c-f7933a70feec.png?auth_key=1873353021-c9cf056449144db8881583918febb7c5-0-6041cfa378594facd7b32e2012f3f99b" alt="Sales Manager">
+                </div>
+                <div class="status-badge"></div>
             </div>
-            <div class="tour-card">
-                <h3>Safari Tour 2</h3>
-                <p>Experience wildlife like never before.</p>
-                <button onclick="openBookingModal(2)">Book Now</button>
-            </div>
-            <!-- Add more tour cards as needed -->
+            <h2>Sales & Support Manager</h2>
+            <p class="subtitle">Your personal guide to Zanzibar's best ocean experiences.</p>
+            
+            <button id="speakBtn" class="action-btn" onclick="startAgent()">
+                <span>▶</span> Click to Start Conversation
+            </button>
+            <p style="font-size: 0.8rem; margin-top: 15px; color: #888;">
+                Voice powered by Web Speech API
+            </p>
         </section>
-        <div id="booking-modal" style="display:none;">
-            <h2>Booking Modal</h2>
-            <form id="booking-form">
-                <label for="tour">Select Tour:</label>
-                <select id="tour" name="tour"></select>
-                <label for="name">Your Name:</label>
-                <input type="text" id="name" name="name" required>
-                <button type="submit">Confirm Booking</button>
-            </form>
-            <button onclick="closeBookingModal()">Close</button>
+
+        <!-- Tours Section -->
+        <div class="section-title">
+            <h2>Signature Ocean Excursions</h2>
+            <p>Handpicked experiences by our local experts</p>
         </div>
-    </main>
-    <footer>
-        <p>&copy; 2026 Nakupenda Safari. All rights reserved.</p>
-    </footer>
-    <script src="script.js"></script>
+
+        <div class="tour-grid">
+            <!-- Card 1 -->
+            <div class="tour-card">
+                <img src="https://z-cdn-media.chatglm.cn/files/e4eef8c0-0d8d-4117-9b45-409530f76b7a.png?auth_key=1873356957-efadedce10964a069bb3f201656198be-0-1b289f98e04ae77edf2eaed97462e1d7" class="card-img" alt="Nakupenda Sandbank"/>
+                <div class="card-content">
+                    <h3 class="card-title">Nakupenda Sandbank</h3>
+                    <p class="card-desc">A pristine sandbank adventure. Includes seafood BBQ lunch, snorkelling, and relaxation on the shifting sands.</p>
+                    <div class="card-footer">
+                        <span class="price">From $50</span>
+                        <button class="book-btn" onclick="openBooking('Nakupenda Sandbank')">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="tour-card">
+                <img src="https://z-cdn-media.chatglm.cn/files/1de561f7-b0cc-452b-95da-17d9975f7f0f.png?auth_key=1873360599-7eb6a260998f47ddbd5da85f0a1d3ebc-0-f9e33f26a37b3568c1166cf4e2fd853d" class="card-img" alt="Prison Island Tortoises"/>
+                <div class="card-content">
+                    <h3 class="card-title">Prison Island & Tortoises</h3>
+                    <p class="card-desc">Visit the historic Changuu Island. Meet Giant Aldabra Tortoises and explore the old prison ruins.</p>
+                    <div class="card-footer">
+                        <span class="price">From $30</span>
+                        <button class="book-btn" onclick="openBooking('Prison Island')">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="tour-card">
+                <img src="https://z-cdn-media.chatglm.cn/files/06b55298-66af-4349-ac10-41e39cea5b69.png?auth_key=1873359856-4679140db8b04c18acba6d21cd2eb71d-0-f7ea71c89011c6982357cb7c498f1b34" class="card-img" alt="Sunset Dhow Cruise"/>
+                <div class="card-content">
+                    <h3 class="card-title">Sunset Dhow Cruise</h3>
+                    <p class="card-desc">Sail the Indian Ocean on a traditional dhow. Enjoy the golden hour views of Stone Town.</p>
+                    <div class="card-footer">
+                        <span class="price">From $35</span>
+                        <button class="book-btn" onclick="openBooking('Sunset Cruise')">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SETTINGS MODAL -->
+    <div id="settingsModal" class="modal-overlay">
+        <div class="modal">
+            <button class="close-btn" onclick="closeSettings()">&times;</button>
+            <h2 style="margin-bottom: 1.5rem;">Agent Settings</h2>
+            
+            <div class="form-group">
+                <label for="voiceSelect">Select Voice</label>
+                <select id="voiceSelect"></select>
+            </div>
+
+            <div class="form-group">
+                <label for="rateRange">Speed: <span id="rateVal">1.0</span>x</label>
+                <input type="range" id="rateRange" min="0.5" max="2" step="0.1" value="1">
+            </div>
+
+            <div class="form-group">
+                <label for="pitchRange">Pitch: <span id="pitchVal">1.0</span></label>
+                <input type="range" id="pitchRange" min="0.5" max="2" step="0.1" value="1">
+            </div>
+
+            <div class="form-group">
+                <label for="customText">Custom Script</label>
+                <textarea id="customText" rows="4">Jambo! Welcome to Nakupenda Isles Safari Zanzibar. We are ocean specialists. We offer the famous Nakupenda Sandbank tour, Prison Island visits, and romantic Sunset Cruises. Which adventure shall we book for you today?</textarea>
+            </div>
+
+            <button class="action-btn" style="width: 100%;" onclick="saveSettings()">Save Settings</button>
+        </div>
+    </div>
+
+    <!-- BOOKING MODAL -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal">
+            <button class="close-btn" onclick="closeBooking()">&times;</button>
+            <h2 style="margin-bottom: 1.5rem;">Book Tour</h2>
+            
+            <form onsubmit="confirmBooking(event)">
+                <div class="form-group">
+                    <label>Selected Tour</label>
+                    <input type="text" id="selectedTour" readonly style="background: #f5f5f5;">
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Preferred Date</label>
+                    <input type="date" id="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <input type="number" id="guests" min="1" max="20" value="2" required>
+                </div>
+
+                <button type="submit" class="action-btn" style="width: 100%;">Send Booking Request</button>
+            </form>
+        </div>
+    </div>
+
+<script>
+    // --- Core Logic Variables ---
+    const synth = window.speechSynthesis;
+    let voices = [];
+    let currentUtterance = null;
+
+    // Configuration
+    let agentConfig = {
+        voice: null,
+        rate: 1.0,
+        pitch: 1.0,
+        text: "Jambo! Welcome to Nakupenda Isles Safari Zanzibar. We are ocean specialists. We offer the famous Nakupenda Sandbank tour, Prison Island visits, and romantic Sunset Cruises. Which adventure shall we book for you today?"
+    };
+
+    // --- Initialization ---
+    function init() {
+        function populateVoices() {
+            voices = synth.getVoices();
+            const voiceSelect = document.getElementById('voiceSelect');
+            voiceSelect.innerHTML = '';
+
+            voices.forEach((voice, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = `${voice.name} (${voice.lang})`;
+                if (voice.default) option.selected = true;
+                voiceSelect.appendChild(option);
+            });
+        }
+
+        populateVoices();
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = populateVoices;
+        }
+
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', today);
+        
+        document.getElementById('rateRange').addEventListener('input', (e) => {
+            document.getElementById('rateVal').textContent = e.target.value;
+        });
+        document.getElementById('pitchRange').addEventListener('input', (e) => {
+            document.getElementById('pitchVal').textContent = e.target.value;
+        });
+    }
+
+    // --- Speech Functions ---
+    function startAgent() {
+        const btn = document.getElementById('speakBtn');
+        const avatar = document.getElementById('avatar');
+        const customText = document.getElementById('customText').value;
+
+        if (synth.speaking) {
+            synth.cancel();
+            btn.innerHTML = "<span>▶</span> Click to Start Conversation";
+            avatar.classList.remove('speaking');
+            return;
+        }
+
+        currentUtterance = new SpeechSynthesisUtterance(customText);
+        
+        const selectedVoiceIndex = document.getElementById('voiceSelect').value;
+        if(voices[selectedVoiceIndex]) currentUtterance.voice = voices[selectedVoiceIndex];
+        
+        currentUtterance.rate = document.getElementById('rateRange').value;
+        currentUtterance.pitch = document.getElementById('pitchRange').value;
+
+        currentUtterance.onstart = () => {
+            btn.innerHTML = "<span>■</span> Stop Speaking";
+            avatar.classList.add('speaking');
+        };
+
+        currentUtterance.onend = () => {
+            btn.innerHTML = "<span>▶</span> Click to Start Conversation";
+            avatar.classList.remove('speaking');
+        };
+
+        synth.speak(currentUtterance);
+    }
+
+    // --- UI Functions ---
+    function openSettings() {
+        document.getElementById('settingsModal').classList.add('active');
+    }
+
+    function closeSettings() {
+        document.getElementById('settingsModal').classList.remove('active');
+    }
+
+    function saveSettings() {
+        agentConfig.rate = document.getElementById('rateRange').value;
+        agentConfig.pitch = document.getElementById('pitchRange').value;
+        agentConfig.text = document.getElementById('customText').value;
+        closeSettings();
+    }
+
+    function openBooking(tourName) {
+        document.getElementById('selectedTour').value = tourName;
+        document.getElementById('bookingModal').classList.add('active');
+    }
+
+    function closeBooking() {
+        document.getElementById('bookingModal').classList.remove('active');
+    }
+
+    function confirmBooking(e) {
+        e.preventDefault();
+        const tour = document.getElementById('selectedTour').value;
+        const date = document.getElementById('date').value;
+        const guests = document.getElementById('guests').value;
+        
+        closeBooking();
+        alert(`Thank you! Your request for ${tour} on ${date} for ${guests} guests has been noted. We will contact you shortly.`);
+    }
+
+    window.onload = init;
+
+</script>
 </body>
 </html>
-<script>
-function openBookingModal(tourId) {
-    document.getElementById('booking-modal').style.display = 'block';
-    document.getElementById('tour').value = tourId;
-}
-function closeBookingModal() {
-    document.getElementById('booking-modal').style.display = 'none';
-}
-</script>
+```
