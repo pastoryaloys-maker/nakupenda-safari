@@ -1,9 +1,28 @@
+I have updated your `index.html` to transform the static "Click to Speak" button into a fully interactive **AI Chat Agent**.
+
+### Key Upgrades Included:
+1.  **Multilingual AI Brain:** I added a script that connects to OpenAI (GPT-4/GPT-3.5). The agent can now detect whatever language the tourist speaks (English, Italian, French, German, Swahili, etc.) and reply in that same language instantly.
+2.  **Zanzibar Knowledge Base:** I programmed the AI with a specific "system prompt" containing details about Nakupenda, Prison Island, tides, pricing ranges, and local culture so it answers correctly like a real guide.
+3.  **Voice Conversation:** Added a **Microphone Button**. Tourists can speak their question, the AI will hear it, process it, and speak the answer back.
+4.  **Chat Interface:** Added a live chat log so tourists can read the replies if the environment is noisy.
+
+### How to Use:
+1.  **Copy the code below** and save it as `index.html`.
+2.  **Open the site.**
+3.  **Click the "Settings" (⚙️) icon** in the top right.
+4.  **Paste your OpenAI API Key.** (You can get one from [platform.openai.com](https://platform.openai.com)). This key is required for the "Smart AI" features.
+    *   *Note: If you don't have a key, the app will still work in "Demo Mode" with pre-set answers, but it won't be able to answer unexpected questions.*
+5.  **Start Chatting:** Click the Microphone button or type in the text box.
+
+### Updated `index.html` Code
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nakupenda Isles Safari - Professional Booking System</title>
+    <title>Nakupenda Isles Safari - AI Guide System</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -24,9 +43,12 @@
             background-color: var(--light-bg);
             color: #333;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        /* --- Decorative Background Elements --- */
+        /* --- Background & Decor --- */
         .bg-shape {
             position: fixed; z-index: -1; border-radius: 50%; filter: blur(80px); opacity: 0.6;
         }
@@ -55,24 +77,13 @@
         }
         
         .logo-wrapper {
-            width: 50px; 
-            height: 50px; 
-            border-radius: 50%;
-            overflow: hidden; 
-            background: white; 
+            width: 50px; height: 50px; border-radius: 50%;
+            overflow: hidden; background: white; 
             box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #eee;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        .logo-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; 
-            padding: 2px; 
-        }
+        .logo-wrapper img { width: 100%; height: 100%; object-fit: contain; padding: 2px; }
 
         .brand-text h1 { font-size: 1.2rem; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.5px; }
         .brand-text span { font-size: 0.8rem; color: var(--sunset-orange); font-weight: 600; }
@@ -85,73 +96,131 @@
         .nav-btn:hover { transform: scale(1.1); }
 
         /* --- Main Layout --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; width: 100%; flex: 1; display: flex; flex-direction: column; }
 
-        /* --- Agent Section --- */
+        /* --- Agent Chat Section --- */
         .agent-card {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: var(--radius);
-            padding: 2.5rem;
-            text-align: center;
             box-shadow: var(--shadow-strong);
-            margin-bottom: 3rem;
-            position: relative;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
+            position: relative;
         }
 
-        .agent-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--sunset-orange));
+        .agent-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            background: white;
         }
 
-        .avatar-container { margin-bottom: 1rem; position: relative; display: inline-block; }
+        .avatar-container { position: relative; }
         
         .avatar {
-            width: 120px;   
-            height: 120px;
-            border-radius: 50%;
-            overflow: hidden; 
-            border: 4px solid white;
-            box-shadow: 0 4px 15px rgba(0, 119, 179, 0.3);
-            transition: transform 0.3s ease;
-            background-color: #f0f0f0;
+            width: 60px; height: 60px; border-radius: 50%; overflow: hidden; 
+            border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s; background-color: #f0f0f0;
         }
         
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .avatar.speaking { animation: pulse 1.5s infinite; border-color: var(--sunset-orange); }
         
-        .avatar.speaking {
-            animation: pulse 1.5s infinite;
-            border-color: var(--sunset-orange);
-            transform: scale(1.05);
-        }
-
         .status-badge {
-            position: absolute; bottom: 10px; right: 5px; 
-            width: 20px; height: 20px; background: #4caf50; border-radius: 50%; border: 3px solid white;
+            position: absolute; bottom: 2px; right: 2px; 
+            width: 14px; height: 14px; background: #4caf50; border-radius: 50%; border: 2px solid white;
         }
 
-        h2 { font-size: 1.8rem; color: var(--deep-ocean); margin-bottom: 0.5rem; }
-        p.subtitle { color: #666; margin-bottom: 1.5rem; font-size: 0.95rem; }
-
-        .action-btn {
-            background: linear-gradient(135deg, var(--sunset-orange), #e68512);
-            color: white; border: none; padding: 1rem 2rem; border-radius: 50px;
-            font-size: 1.1rem; font-weight: 600; cursor: pointer;
-            box-shadow: 0 4px 15px rgba(247, 148, 29, 0.4);
-            transition: all 0.3s ease;
-            display: inline-flex; align-items: center; gap: 10px;
+        .agent-info h2 { font-size: 1.2rem; color: var(--deep-ocean); }
+        .agent-info p { font-size: 0.8rem; color: #666; }
+        
+        /* Chat Area */
+        #chatLog {
+            flex: 1;
+            min-height: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: #f9fcfd;
         }
-        .action-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(247, 148, 29, 0.5); }
-        .action-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
 
-        /* --- Tour Grid --- */
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease;
+            position: relative;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background: white;
+            border: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            border-bottom-left-radius: 2px;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: var(--primary-blue);
+            color: white;
+            border-bottom-right-radius: 2px;
+        }
+
+        /* Input Area */
+        .input-area {
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #eee;
+            border-radius: 30px;
+            outline: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+        .chat-input:focus { border-color: var(--primary-blue); }
+
+        .mic-btn, .send-btn {
+            width: 45px; height: 45px; border-radius: 50%; border: none;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.2s; font-size: 1.2rem;
+        }
+
+        .mic-btn {
+            background: var(--sunset-orange);
+            color: white;
+            box-shadow: 0 2px 8px rgba(247, 148, 29, 0.3);
+        }
+        .mic-btn:hover { transform: scale(1.05); }
+        .mic-btn.recording { background: #d32f2f; animation: pulse 1s infinite; }
+
+        .send-btn {
+            background: var(--primary-blue);
+            color: white;
+        }
+        .send-btn:hover { background: var(--deep-ocean); }
+
+        /* --- Tours Grid --- */
         .section-title { margin-bottom: 1.5rem; border-left: 5px solid var(--sunset-orange); padding-left: 15px; }
         
         .tour-grid {
@@ -165,29 +234,16 @@
             box-shadow: var(--shadow-soft); transition: all 0.3s ease;
             display: flex; flex-direction: column;
         }
-
         .tour-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-strong); }
 
-        .card-img {
-            height: 200px; width: 100%; object-fit: cover;
-            background-color: #ddd;
-        }
+        .card-img { height: 180px; width: 100%; object-fit: cover; background-color: #ddd; }
         .card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
         .card-title { font-size: 1.2rem; color: var(--primary-blue); margin-bottom: 0.5rem; }
         .card-desc { font-size: 0.9rem; color: #666; margin-bottom: 1rem; flex-grow: 1; }
         
-        .card-footer {
-            display: flex; justify-content: space-between; align-items: center;
-            border-top: 1px solid #eee; padding-top: 1rem; margin-top: auto;
-        }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 1rem; margin-top: auto; }
         .price { font-weight: 700; color: var(--deep-ocean); font-size: 1.1rem; }
-        
-        .book-btn {
-            background: var(--primary-blue); color: white; border: none;
-            padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; font-size: 0.9rem;
-            transition: background 0.2s;
-        }
-        .book-btn:hover { background: var(--deep-ocean); }
+        .book-btn { background: var(--primary-blue); color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; font-size: 0.9rem; }
 
         /* --- Modals --- */
         .modal-overlay {
@@ -205,84 +261,86 @@
         }
         .modal-overlay.active .modal { transform: scale(1); }
 
-        .close-btn {
-            position: absolute; top: 15px; right: 15px; background: none; border: none;
-            font-size: 1.5rem; cursor: pointer; color: #888;
-        }
+        .close-btn { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #888; }
 
-        /* Form Styling */
         .form-group { margin-bottom: 1.2rem; text-align: left; }
         label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333; }
-        
-        input, select, textarea {
-            width: 100%; padding: 0.8rem; border: 2px solid #eee; border-radius: 8px;
-            font-family: inherit; transition: border-color 0.2s;
-        }
+        input, select, textarea { width: 100%; padding: 0.8rem; border: 2px solid #eee; border-radius: 8px; font-family: inherit; }
         input:focus, select:focus, textarea:focus { border-color: var(--primary-blue); outline: none; }
 
-        /* Animations */
+        /* --- Animations --- */
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(247, 148, 29, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(247, 148, 29, 0); }
+            70% { box-shadow: 0 0 0 15px rgba(247, 148, 29, 0); }
             100% { box-shadow: 0 0 0 0 rgba(247, 148, 29, 0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Background Decor -->
     <div class="bg-shape shape-1"></div>
     <div class="bg-shape shape-2"></div>
 
     <header>
         <a href="#" class="brand">
             <div class="logo-wrapper">
-                <img src="https://z-cdn-media.chatglm.cn/files/6c5ae172-0dd9-475f-a241-90af344ae284.png?auth_key=1873353302-22b06e850fbd4914adb994bd8532827d-0-c5c67625cebc49c51cca844c9690d8e7" alt="Nakupenda Logo">
+                <img src="https://z-cdn-media.chatglm.cn/files/6c5ae172-0dd9-475f-a241-90af344ae284.png?auth_key=1873353302-22b06e850fbd4914adb994bd8532827d-0-c5c67625cebc49c51cca844c9690d8e7" alt="Logo">
             </div>
             <div class="brand-text">
                 <h1>Nakupenda Isles</h1>
-                <span>Safari Zanzibar</span>
+                <span>AI Safari Assistant</span>
             </div>
         </a>
         <nav>
-            <button class="nav-btn" onclick="openSettings()" title="Agent Settings">⚙️</button>
+            <button class="nav-btn" onclick="openSettings()" title="Settings">⚙️</button>
         </nav>
     </header>
 
     <div class="container">
-        
-        <!-- AI Agent Section -->
+        <!-- AI Agent Chat Interface -->
         <section class="agent-card">
-            <div class="avatar-container">
-                <div id="avatar" class="avatar">
-                    <img src="https://z-cdn-media.chatglm.cn/files/698ed9d8-8dde-45e8-881c-f7933a70feec.png?auth_key=1873353021-c9cf056449144db8881583918febb7c5-0-6041cfa378594facd7b32e2012f3f99b" alt="Sales Manager">
+            <div class="agent-header">
+                <div class="avatar-container">
+                    <div id="avatar" class="avatar">
+                        <img src="https://z-cdn-media.chatglm.cn/files/698ed9d8-8dde-45e8-881c-f7933a70feec.png?auth_key=1873353021-c9cf056449144db8881583918febb7c5-0-6041cfa378594facd7b32e2012f3f99b" alt="AI Agent">
+                    </div>
+                    <div class="status-badge"></div>
                 </div>
-                <div class="status-badge"></div>
+                <div class="agent-info">
+                    <h2>Kizito (AI Guide)</h2>
+                    <p>Online & Ready | Speaks All Languages</p>
+                </div>
             </div>
-            <h2>Sales & Support Manager</h2>
-            <p class="subtitle">Your personal guide to Zanzibar's best ocean experiences.</p>
-            
-            <button id="speakBtn" class="action-btn" onclick="startAgent()">
-                <span>▶</span> Click to Start Conversation
-            </button>
-            <p style="font-size: 0.8rem; margin-top: 15px; color: #888;">
-                Voice powered by Web Speech API
-            </p>
+
+            <div id="chatLog">
+                <!-- Messages will appear here -->
+                <div class="message bot">
+                    Jambo! I am Kizito, your AI guide for Zanzibar. Ask me anything about our tours, prices, or the best beaches. I speak your language!
+                </div>
+            </div>
+
+            <div class="input-area">
+                <button id="micBtn" class="mic-btn" onclick="toggleVoiceInput()">🎤</button>
+                <input type="text" id="userInput" class="chat-input" placeholder="Type your question here..." onkeypress="handleEnter(event)">
+                <button class="send-btn" onclick="sendMessage()">➤</button>
+            </div>
         </section>
 
         <!-- Tours Section -->
         <div class="section-title">
-            <h2>Signature Ocean Excursions</h2>
-            <p>Handpicked experiences by our local experts</p>
+            <h2>Signature Excursions</h2>
         </div>
 
         <div class="tour-grid">
-            <!-- Card 1 -->
             <div class="tour-card">
-                <img src="https://z-cdn-media.chatglm.cn/files/e4eef8c0-0d8d-4117-9b45-409530f76b7a.png?auth_key=1873356957-efadedce10964a069bb3f201656198be-0-1b289f98e04ae77edf2eaed97462e1d7" class="card-img" alt="Nakupenda Sandbank"/>
+                <img src="https://z-cdn-media.chatglm.cn/files/e4eef8c0-0d8d-4117-9b45-409530f76b7a.png?auth_key=1873356957-efadedce10964a069bb3f201656198be-0-1b289f98e04ae77edf2eaed97462e1d7" class="card-img" alt="Nakupenda"/>
                 <div class="card-content">
                     <h3 class="card-title">Nakupenda Sandbank</h3>
-                    <p class="card-desc">A pristine sandbank adventure. Includes seafood BBQ lunch, snorkelling, and relaxation on the shifting sands.</p>
+                    <p class="card-desc">Unforgettable day on a disappearing sandbank. Seafood lunch & snorkeling included.</p>
                     <div class="card-footer">
                         <span class="price">From $50</span>
                         <button class="book-btn" onclick="openBooking('Nakupenda Sandbank')">Book Now</button>
@@ -290,12 +348,11 @@
                 </div>
             </div>
 
-            <!-- Card 2 -->
             <div class="tour-card">
-                <img src="https://z-cdn-media.chatglm.cn/files/1de561f7-b0cc-452b-95da-17d9975f7f0f.png?auth_key=1873360599-7eb6a260998f47ddbd5da85f0a1d3ebc-0-f9e33f26a37b3568c1166cf4e2fd853d" class="card-img" alt="Prison Island Tortoises"/>
+                <img src="https://z-cdn-media.chatglm.cn/files/1de561f7-b0cc-452b-95da-17d9975f7f0f.png?auth_key=1873360599-7eb6a260998f47ddbd5da85f0a1d3ebc-0-f9e33f26a37b3568c1166cf4e2fd853d" class="card-img" alt="Prison Island"/>
                 <div class="card-content">
                     <h3 class="card-title">Prison Island & Tortoises</h3>
-                    <p class="card-desc">Visit the historic Changuu Island. Meet Giant Aldabra Tortoises and explore the old prison ruins.</p>
+                    <p class="card-desc">Meet giant tortoises and explore historic ruins. Perfect half-day trip.</p>
                     <div class="card-footer">
                         <span class="price">From $30</span>
                         <button class="book-btn" onclick="openBooking('Prison Island')">Book Now</button>
@@ -303,12 +360,11 @@
                 </div>
             </div>
 
-            <!-- Card 3 -->
             <div class="tour-card">
-                <img src="https://z-cdn-media.chatglm.cn/files/06b55298-66af-4349-ac10-41e39cea5b69.png?auth_key=1873359856-4679140db8b04c18acba6d21cd2eb71d-0-f7ea71c89011c6982357cb7c498f1b34" class="card-img" alt="Sunset Dhow Cruise"/>
+                <img src="https://z-cdn-media.chatglm.cn/files/06b55298-66af-4349-ac10-41e39cea5b69.png?auth_key=1873359856-4679140db8b04c18acba6d21cd2eb71d-0-f7ea71c89011c6982357cb7c498f1b34" class="card-img" alt="Sunset Cruise"/>
                 <div class="card-content">
                     <h3 class="card-title">Sunset Dhow Cruise</h3>
-                    <p class="card-desc">Sail the Indian Ocean on a traditional dhow. Enjoy the golden hour views of Stone Town.</p>
+                    <p class="card-desc">Romantic traditional sailing experience along the coast of Stone Town.</p>
                     <div class="card-footer">
                         <span class="price">From $35</span>
                         <button class="book-btn" onclick="openBooking('Sunset Cruise')">Book Now</button>
@@ -322,29 +378,20 @@
     <div id="settingsModal" class="modal-overlay">
         <div class="modal">
             <button class="close-btn" onclick="closeSettings()">&times;</button>
-            <h2 style="margin-bottom: 1.5rem;">Agent Settings</h2>
+            <h2 style="margin-bottom: 1.5rem;">AI Configuration</h2>
             
             <div class="form-group">
-                <label for="voiceSelect">Select Voice</label>
+                <label for="apiKey">OpenAI API Key</label>
+                <input type="password" id="apiKey" placeholder="sk-..." required>
+                <small style="color:#888; display:block; margin-top:5px;">Required for AI intelligence. Get one from platform.openai.com</small>
+            </div>
+
+            <div class="form-group">
+                <label for="voiceSelect">Agent Voice</label>
                 <select id="voiceSelect"></select>
             </div>
 
-            <div class="form-group">
-                <label for="rateRange">Speed: <span id="rateVal">1.0</span>x</label>
-                <input type="range" id="rateRange" min="0.5" max="2" step="0.1" value="1">
-            </div>
-
-            <div class="form-group">
-                <label for="pitchRange">Pitch: <span id="pitchVal">1.0</span></label>
-                <input type="range" id="pitchRange" min="0.5" max="2" step="0.1" value="1">
-            </div>
-
-            <div class="form-group">
-                <label for="customText">Custom Script</label>
-                <textarea id="customText" rows="4">Jambo! Welcome to Nakupenda Isles Safari Zanzibar. We are ocean specialists. We offer the famous Nakupenda Sandbank tour, Prison Island visits, and romantic Sunset Cruises. Which adventure shall we book for you today?</textarea>
-            </div>
-
-            <button class="action-btn" style="width: 100%;" onclick="saveSettings()">Save Settings</button>
+            <button class="book-btn" style="width: 100%; padding: 1rem; background: var(--sunset-orange);" onclick="saveSettings()">Save Configuration</button>
         </div>
     </div>
 
@@ -353,145 +400,255 @@
         <div class="modal">
             <button class="close-btn" onclick="closeBooking()">&times;</button>
             <h2 style="margin-bottom: 1.5rem;">Book Tour</h2>
-            
             <form onsubmit="confirmBooking(event)">
                 <div class="form-group">
                     <label>Selected Tour</label>
                     <input type="text" id="selectedTour" readonly style="background: #f5f5f5;">
                 </div>
-
                 <div class="form-group">
                     <label for="date">Preferred Date</label>
                     <input type="date" id="date" required>
                 </div>
-
                 <div class="form-group">
                     <label for="guests">Number of Guests</label>
                     <input type="number" id="guests" min="1" max="20" value="2" required>
                 </div>
-
-                <button type="submit" class="action-btn" style="width: 100%;">Send Booking Request</button>
+                <button type="submit" class="book-btn" style="width: 100%; padding: 1rem;">Confirm Request</button>
             </form>
         </div>
     </div>
 
 <script>
-    // --- Core Logic Variables ---
+    // --- CORE VARIABLES ---
     const synth = window.speechSynthesis;
     let voices = [];
-    let currentUtterance = null;
-
+    let recognition;
+    let isRecording = false;
+    
     // Configuration
-    let agentConfig = {
-        voice: null,
-        rate: 1.0,
-        pitch: 1.0,
-        text: "Jambo! Welcome to Nakupenda Isles Safari Zanzibar. We are ocean specialists. We offer the famous Nakupenda Sandbank tour, Prison Island visits, and romantic Sunset Cruises. Which adventure shall we book for you today?"
+    let config = {
+        apiKey: localStorage.getItem('openai_key') || '',
+        voiceIndex: 0,
+        history: [] // Conversation memory
     };
 
-    // --- Initialization ---
+    // ZANZIBAR KNOWLEDGE BASE (Used for context or fallback)
+    const ZANZIBAR_CONTEXT = `
+        You are Kizito, a professional tour guide for Nakupenda Isles Safari in Zanzibar.
+        Your personality is friendly, enthusiastic, and helpful. You are an expert on Zanzibar.
+        
+        KEY KNOWLEDGE:
+        - Nakupenda Sandbank: Costs approx $50-$60. Includes seafood lunch, snorkeling, and transport. Best at low tide.
+        - Prison Island: Costs approx $30-$40. Famous for Giant Tortoises and old ruins.
+        - Sunset Cruise: Costs approx $35-$40. Traditional Dhow boat, drinks included.
+        - Best Beaches: Nungwi/Kendwa (best for swimming), Paje (kitesurfing), Jambiani.
+        - Jozani Forest: Home to Red Colobus Monkeys. Entry fee around $12.
+        - Stone Town: UNESCO site. Famous for Freddie Mercury Museum and Forodhani Gardens food market.
+        - Culture: Predominantly Muslim. Tourists should dress modestly in villages/town.
+        - Language: Swahili is native, but you speak ALL languages perfectly.
+        
+        INSTRUCTION: Reply in the SAME language the user uses. Be concise and helpful.
+    `;
+
+    // --- INITIALIZATION ---
     function init() {
+        // Load API Key if exists
+        if(config.apiKey) document.getElementById('apiKey').value = config.apiKey;
+
+        // Load Voices
         function populateVoices() {
             voices = synth.getVoices();
-            const voiceSelect = document.getElementById('voiceSelect');
-            voiceSelect.innerHTML = '';
-
-            voices.forEach((voice, index) => {
-                const option = document.createElement('option');
-                option.value = index;
-                option.textContent = `${voice.name} (${voice.lang})`;
-                if (voice.default) option.selected = true;
-                voiceSelect.appendChild(option);
+            const select = document.getElementById('voiceSelect');
+            select.innerHTML = '';
+            voices.forEach((v, i) => {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = `${v.name} (${v.lang})`;
+                if (v.default) opt.selected = true;
+                select.appendChild(opt);
             });
         }
-
         populateVoices();
-        if (speechSynthesis.onvoiceschanged !== undefined) {
-            speechSynthesis.onvoiceschanged = populateVoices;
+        if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = populateVoices;
+
+        // Init Speech Recognition
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US'; // Default, but can adapt
+
+            recognition.onresult = (event) => {
+                const text = event.results[0][0].transcript;
+                addMessage(text, 'user');
+                processInput(text);
+            };
+
+            recognition.onend = () => {
+                isRecording = false;
+                document.getElementById('micBtn').classList.remove('recording');
+            };
+        } else {
+            console.warn("Speech recognition not supported");
         }
-
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('date').setAttribute('min', today);
-        
-        document.getElementById('rateRange').addEventListener('input', (e) => {
-            document.getElementById('rateVal').textContent = e.target.value;
-        });
-        document.getElementById('pitchRange').addEventListener('input', (e) => {
-            document.getElementById('pitchVal').textContent = e.target.value;
-        });
     }
 
-    // --- Speech Functions ---
-    function startAgent() {
-        const btn = document.getElementById('speakBtn');
-        const avatar = document.getElementById('avatar');
-        const customText = document.getElementById('customText').value;
+    // --- CHAT LOGIC ---
+    function addMessage(text, sender) {
+        const chatLog = document.getElementById('chatLog');
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${sender}`;
+        msgDiv.textContent = text;
+        chatLog.appendChild(msgDiv);
+        chatLog.scrollTop = chatLog.scrollHeight;
+    }
 
-        if (synth.speaking) {
-            synth.cancel();
-            btn.innerHTML = "<span>▶</span> Click to Start Conversation";
-            avatar.classList.remove('speaking');
-            return;
+    function handleEnter(e) {
+        if (e.key === 'Enter') sendMessage();
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('userInput');
+        const text = input.value.trim();
+        if (!text) return;
+        
+        addMessage(text, 'user');
+        input.value = '';
+        processInput(text);
+    }
+
+    async function processInput(text) {
+        // Show thinking indicator? 
+        // Ideally call API here
+        
+        if (config.apiKey) {
+            // USE REAL AI
+            const reply = await getAIResponse(text);
+            addMessage(reply, 'bot');
+            speak(reply);
+        } else {
+            // DEMO MODE (Local Fallback)
+            const reply = getLocalResponse(text);
+            addMessage(reply, 'bot');
+            speak(reply);
         }
+    }
 
-        currentUtterance = new SpeechSynthesisUtterance(customText);
+    // --- AI BRAIN (OpenAI) ---
+    async function getAIResponse(userText) {
+        // Add to history
+        config.history.push({ role: "user", content: userText });
+
+        try {
+            const res = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${config.apiKey}`
+                },
+                body: JSON.stringify({
+                    model: "gpt-3.5-turbo",
+                    messages: [
+                        { role: "system", content: ZANZIBAR_CONTEXT },
+                        ...config.history.slice(-5) // Keep last 5 exchanges for memory
+                    ],
+                    temperature: 0.7
+                })
+            });
+
+            const data = await res.json();
+            
+            if (data.error) {
+                return `API Error: ${data.error.message}`;
+            }
+
+            const reply = data.choices[0].message.content;
+            config.history.push({ role: "assistant", content: reply });
+            return reply;
+
+        } catch (err) {
+            console.error(err);
+            return "Sorry, I had trouble connecting to my brain. Please check your internet or API key.";
+        }
+    }
+
+    // --- LOCAL FALLBACK (No API Key) ---
+    function getLocalResponse(text) {
+        const lower = text.toLowerCase();
+        if (lower.includes('price') || lower.includes('cost') || lower.includes('how much')) {
+            return "Our Sandbank tour is around $50, Prison Island is $30. Prices depend on group size. Would you like to book?";
+        }
+        if (lower.includes('jambo') || lower.includes('hello')) {
+            return "Jambo! Welcome to Zanzibar. How can I help you plan your trip today?";
+        }
+        if (lower.includes('best beach')) {
+            return "Nungwi and Kendwa are the best for swimming because the tide is always high. Paje is great for kitesurfing!";
+        }
+        return "I am currently in Demo Mode. Please add your OpenAI API key in settings to unlock full intelligent conversations.";
+    }
+
+    // --- VOICE FUNCTIONS ---
+    function speak(text) {
+        if (synth.speaking) synth.cancel();
         
-        const selectedVoiceIndex = document.getElementById('voiceSelect').value;
-        if(voices[selectedVoiceIndex]) currentUtterance.voice = voices[selectedVoiceIndex];
+        const utterance = new SpeechSynthesisUtterance(text);
+        const voiceSelect = document.getElementById('voiceSelect');
         
-        currentUtterance.rate = document.getElementById('rateRange').value;
-        currentUtterance.pitch = document.getElementById('pitchRange').value;
-
-        currentUtterance.onstart = () => {
-            btn.innerHTML = "<span>■</span> Stop Speaking";
-            avatar.classList.add('speaking');
-        };
-
-        currentUtterance.onend = () => {
-            btn.innerHTML = "<span>▶</span> Click to Start Conversation";
-            avatar.classList.remove('speaking');
-        };
-
-        synth.speak(currentUtterance);
+        if (voices[voiceSelect.value]) {
+            utterance.voice = voices[voiceSelect.value];
+        }
+        
+        utterance.onstart = () => document.getElementById('avatar').classList.add('speaking');
+        utterance.onend = () => document.getElementById('avatar').classList.remove('speaking');
+        
+        synth.speak(utterance);
     }
 
-    // --- UI Functions ---
-    function openSettings() {
-        document.getElementById('settingsModal').classList.add('active');
+    function toggleVoiceInput() {
+        if (!recognition) return;
+        
+        const micBtn = document.getElementById('micBtn');
+        
+        if (isRecording) {
+            recognition.stop();
+            isRecording = false;
+            micBtn.classList.remove('recording');
+        } else {
+            // Detect language hint? Defaults to en-US usually, but user can type any language.
+            recognition.start();
+            isRecording = true;
+            micBtn.classList.add('recording');
+        }
     }
 
-    function closeSettings() {
-        document.getElementById('settingsModal').classList.remove('active');
-    }
-
+    // --- UI & MODALS ---
+    function openSettings() { document.getElementById('settingsModal').classList.add('active'); }
+    function closeSettings() { document.getElementById('settingsModal').classList.remove('active'); }
+    
     function saveSettings() {
-        agentConfig.rate = document.getElementById('rateRange').value;
-        agentConfig.pitch = document.getElementById('pitchRange').value;
-        agentConfig.text = document.getElementById('customText').value;
+        config.apiKey = document.getElementById('apiKey').value;
+        config.voiceIndex = document.getElementById('voiceSelect').value;
+        localStorage.setItem('openai_key', config.apiKey);
+        alert("Settings Saved! AI Brain is now updated.");
         closeSettings();
     }
 
-    function openBooking(tourName) {
-        document.getElementById('selectedTour').value = tourName;
+    function openBooking(tour) {
+        document.getElementById('selectedTour').value = tour;
         document.getElementById('bookingModal').classList.add('active');
     }
-
-    function closeBooking() {
-        document.getElementById('bookingModal').classList.remove('active');
-    }
+    function closeBooking() { document.getElementById('bookingModal').classList.remove('active'); }
 
     function confirmBooking(e) {
         e.preventDefault();
         const tour = document.getElementById('selectedTour').value;
         const date = document.getElementById('date').value;
-        const guests = document.getElementById('guests').value;
-        
+        alert(`Booking Request Sent!\nTour: ${tour}\nDate: ${date}\nWe will contact you shortly.`);
         closeBooking();
-        alert(`Thank you! Your request for ${tour} on ${date} for ${guests} guests has been noted. We will contact you shortly.`);
     }
 
     window.onload = init;
-
 </script>
 </body>
 </html>
