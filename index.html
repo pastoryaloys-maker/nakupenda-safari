@@ -69,7 +69,29 @@
         .brand-text h1 { font-size: 1.2rem; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.5px; }
         .brand-text span { font-size: 0.8rem; color: var(--sunset-orange); font-weight: 600; }
 
-        nav { display: flex; gap: 10px; }
+        .nav-right { display: flex; align-items: center; gap: 15px; }
+        
+        /* Status Indicator */
+        .status-indicator {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: none; /* Hidden by default */
+        }
+        .status-indicator.active {
+            display: block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        .status-indicator.demo {
+            display: block;
+            background: #fff3e0;
+            color: #ef6c00;
+            border: 1px solid #ffe0b2;
+        }
+
         .nav-btn {
             background: none; border: none; cursor: pointer; padding: 8px;
             color: var(--primary-blue); font-size: 1.5rem; transition: transform 0.2s;
@@ -276,9 +298,10 @@
                 <span>AI Safari Assistant</span>
             </div>
         </a>
-        <nav>
+        <div class="nav-right">
+            <div id="headerStatus" class="status-indicator demo">Status: Demo Mode</div>
             <button class="nav-btn" onclick="openSettings()" title="Settings">⚙️</button>
-        </nav>
+        </div>
     </header>
 
     <div class="container">
@@ -298,9 +321,8 @@
             </div>
 
             <div id="chatLog">
-                <!-- Messages will appear here -->
                 <div class="message bot">
-                    Jambo! I am Kizito, your AI guide for Zanzibar. Ask me anything about our tours, prices, or the best beaches. I speak your language!
+                    Jambo! I am Kizito. If you see "AI Connected" in the header, I am ready to answer anything about Zanzibar.
                 </div>
             </div>
 
@@ -372,7 +394,9 @@
                 <select id="voiceSelect"></select>
             </div>
 
-            <button class="book-btn" style="width: 100%; padding: 1rem; background: var(--sunset-orange);" onclick="saveSettings()">Save Configuration</button>
+            <button class="book-btn" style="width: 100%; padding: 1rem; background: var(--sunset-orange); font-weight: 600;" onclick="saveSettings()">Save & Test Key</button>
+            
+            <div id="testResult" style="margin-top: 10px; font-size: 0.9rem; text-align: center;"></div>
         </div>
     </div>
 
@@ -406,14 +430,14 @@
     let recognition;
     let isRecording = false;
     
-    // Configuration
+    // Configuration - Loaded from storage
     let config = {
-        apiKey: localStorage.getItem('openai_key') || '',
+        apiKey: '',
         voiceIndex: 0,
-        history: [] // Conversation memory
+        history: []
     };
 
-    // ZANZIBAR KNOWLEDGE BASE (Used for context or fallback)
+    // ZANZIBAR KNOWLEDGE BASE
     const ZANZIBAR_CONTEXT = `
         You are Kizito, a professional tour guide for Nakupenda Isles Safari in Zanzibar.
         Your personality is friendly, enthusiastic, and helpful. You are an expert on Zanzibar.
@@ -433,10 +457,17 @@
 
     // --- INITIALIZATION ---
     function init() {
-        // Load API Key if exists
-        if(config.apiKey) document.getElementById('apiKey').value = config.apiKey;
+        // 1. Load API Key from storage
+        const storedKey = localStorage.getItem('openai_key');
+        if(storedKey) {
+            config.apiKey = storedKey;
+            document.getElementById('apiKey').value = storedKey;
+            updateHeaderStatus(true);
+        } else {
+            updateHeaderStatus(false);
+        }
 
-        // Load Voices
+        // 2. Load Voices
         function populateVoices() {
             voices = synth.getVoices();
             const select = document.getElementById('voiceSelect');
@@ -452,13 +483,13 @@
         populateVoices();
         if (speechSynthesis.onvoiceschanged !== undefined) speechSynthesis.onvoiceschanged = populateVoices;
 
-        // Init Speech Recognition
+        // 3. Init Speech Recognition
         if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             recognition = new SpeechRecognition();
             recognition.continuous = false;
             recognition.interimResults = false;
-            recognition.lang = 'en-US'; // Default, but can adapt
+            recognition.lang = 'en-US';
 
             recognition.onresult = (event) => {
                 const text = event.results[0][0].transcript;
@@ -470,8 +501,18 @@
                 isRecording = false;
                 document.getElementById('micBtn').classList.remove('recording');
             };
+        }
+    }
+
+    // --- UI STATUS UPDATES ---
+    function updateHeaderStatus(isConnected) {
+        const statusEl = document.getElementById('headerStatus');
+        if (isConnected) {
+            statusEl.textContent = "Status: AI Connected";
+            statusEl.className = "status-indicator active";
         } else {
-            console.warn("Speech recognition not supported");
+            statusEl.textContent = "Status: Demo Mode";
+            statusEl.className = "status-indicator demo";
         }
     }
 
@@ -500,16 +541,13 @@
     }
 
     async function processInput(text) {
-        // Show thinking indicator? 
-        // Ideally call API here
-        
-        if (config.apiKey) {
-            // USE REAL AI
+        if (config.apiKey && config.apiKey.length > 5) {
+            // KEY EXISTS - USE REAL AI
             const reply = await getAIResponse(text);
             addMessage(reply, 'bot');
             speak(reply);
         } else {
-            // DEMO MODE (Local Fallback)
+            // NO KEY - DEMO MODE
             const reply = getLocalResponse(text);
             addMessage(reply, 'bot');
             speak(reply);
@@ -518,7 +556,6 @@
 
     // --- AI BRAIN (OpenAI) ---
     async function getAIResponse(userText) {
-        // Add to history
         config.history.push({ role: "user", content: userText });
 
         try {
@@ -532,7 +569,7 @@
                     model: "gpt-3.5-turbo",
                     messages: [
                         { role: "system", content: ZANZIBAR_CONTEXT },
-                        ...config.history.slice(-5) // Keep last 5 exchanges for memory
+                        ...config.history.slice(-5) 
                     ],
                     temperature: 0.7
                 })
@@ -541,7 +578,8 @@
             const data = await res.json();
             
             if (data.error) {
-                return `API Error: ${data.error.message}`;
+                updateHeaderStatus(false); // Key failed
+                return `API Error: ${data.error.message}. Check your key in Settings.`;
             }
 
             const reply = data.choices[0].message.content;
@@ -550,23 +588,13 @@
 
         } catch (err) {
             console.error(err);
-            return "Sorry, I had trouble connecting to my brain. Please check your internet or API key.";
+            return "Network Error: Could not reach AI servers.";
         }
     }
 
     // --- LOCAL FALLBACK (No API Key) ---
     function getLocalResponse(text) {
-        const lower = text.toLowerCase();
-        if (lower.includes('price') || lower.includes('cost') || lower.includes('how much')) {
-            return "Our Sandbank tour is around $50, Prison Island is $30. Prices depend on group size. Would you like to book?";
-        }
-        if (lower.includes('jambo') || lower.includes('hello')) {
-            return "Jambo! Welcome to Zanzibar. How can I help you plan your trip today?";
-        }
-        if (lower.includes('best beach')) {
-            return "Nungwi and Kendwa are the best for swimming because the tide is always high. Paje is great for kitesurfing!";
-        }
-        return "I am currently in Demo Mode. Please add your OpenAI API key in settings to unlock full intelligent conversations.";
+        return "I am currently in Demo Mode. Please click the Settings (⚙️) icon and add your OpenAI API Key to unlock full intelligence.";
     }
 
     // --- VOICE FUNCTIONS ---
@@ -588,7 +616,6 @@
 
     function toggleVoiceInput() {
         if (!recognition) return;
-        
         const micBtn = document.getElementById('micBtn');
         
         if (isRecording) {
@@ -596,7 +623,6 @@
             isRecording = false;
             micBtn.classList.remove('recording');
         } else {
-            // Detect language hint? Defaults to en-US usually, but user can type any language.
             recognition.start();
             isRecording = true;
             micBtn.classList.add('recording');
@@ -604,15 +630,46 @@
     }
 
     // --- UI & MODALS ---
-    function openSettings() { document.getElementById('settingsModal').classList.add('active'); }
+    function openSettings() { 
+        document.getElementById('settingsModal').classList.add('active'); 
+        document.getElementById('testResult').textContent = ""; // Clear previous test result
+    }
+    
     function closeSettings() { document.getElementById('settingsModal').classList.remove('active'); }
     
     function saveSettings() {
-        config.apiKey = document.getElementById('apiKey').value;
-        config.voiceIndex = document.getElementById('voiceSelect').value;
-        localStorage.setItem('openai_key', config.apiKey);
-        alert("Settings Saved! AI Brain is now updated.");
-        closeSettings();
+        const keyInput = document.getElementById('apiKey').value.trim();
+        const resultDiv = document.getElementById('testResult');
+        
+        if (!keyInput) {
+            resultDiv.innerHTML = "<span style='color:red'>Please enter a key.</span>";
+            return;
+        }
+
+        // Save Logic
+        config.apiKey = keyInput;
+        localStorage.setItem('openai_key', keyInput);
+        
+        // Visual Feedback
+        resultDiv.innerHTML = "Key Saved! Testing connection...";
+        
+        // Simple test call
+        fetch('https://api.openai.com/v1/models', {
+            headers: { 'Authorization': `Bearer ${keyInput}` }
+        })
+        .then(res => {
+            if (res.ok) {
+                resultDiv.innerHTML = "<span style='color:green'>Success! AI Connected.</span>";
+                updateHeaderStatus(true);
+                closeSettings(); // Close on success
+            } else {
+                resultDiv.innerHTML = "<span style='color:red'>Invalid Key. Check and try again.</span>";
+                updateHeaderStatus(false);
+            }
+        })
+        .catch(() => {
+            resultDiv.innerHTML = "<span style='color:red'>Network Error.</span>";
+        });
     }
 
     function openBooking(tour) {
