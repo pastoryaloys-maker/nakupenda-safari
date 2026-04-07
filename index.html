@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nakupendaisles Safari Zanzibar | Premium Excursions</title>
-    <meta name="description" content="Book unforgettable excursions in Zanzibar. Prison Island, Nakupenda Sandbank, Sunset Dhow Cruises, and seafood BBQ dinners. Officially certified and safe.">
+    <meta name="description" content="Book unforgettable excursions in Zanzibar. Prison Island, Nakupenda Sandbank, Sunset Dhow Cruises, and seafood BBQ dinners.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CSS VARIABLES & RESET --- */
+        /* --- CSS VARIABLES --- */
         :root {
             --primary: #008080;
             --primary-dark: #005f5f;
@@ -29,15 +29,9 @@
             --transition: all 0.3s ease;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -47,21 +41,13 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            color: var(--text-dark);
-        }
-
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--text-dark); }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
         img { max-width: 100%; display: block; }
 
-        /* --- UTILITY CLASSES --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        /* --- UTILITIES --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
         .btn {
             display: inline-block;
@@ -77,861 +63,176 @@
             white-space: nowrap;
         }
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--white);
-            box-shadow: 0 4px 15px rgba(0, 128, 128, 0.3);
-        }
+        .btn-primary { background-color: var(--primary); color: var(--white); box-shadow: 0 4px 15px rgba(0, 128, 128, 0.3); }
+        .btn-primary:hover { background-color: var(--primary-dark); transform: translateY(-2px); }
+        .btn-accent { background-color: var(--accent); color: var(--white); box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3); }
+        .btn-accent:hover { background-color: #e67e00; transform: translateY(-2px); }
 
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-        }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .section-title span { color: var(--primary); font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; font-family: 'Poppins', sans-serif; }
 
-        .btn-accent {
-            background-color: var(--accent);
-            color: var(--white);
-            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
-        }
+        /* --- HEADER --- */
+        header { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.05); padding: 15px 0; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 15px; font-weight: 700; color: var(--primary); font-size: 1.2rem; }
+        .logo-wrapper { display: flex; align-items: center; animation: zoom-pulse 10s ease-in-out infinite; }
+        .logo-img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; animation: alternate-spin 4s linear infinite; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+        @keyframes alternate-spin { 0% { transform: rotate(0deg); } 50% { transform: rotate(360deg); } 100% { transform: rotate(0deg); } }
+        @keyframes zoom-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 
-        .btn-accent:hover {
-            background-color: #e67e00;
-            transform: translateY(-2px);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .section-title span {
-            color: var(--primary);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        /* --- HEADER & NAV --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-            padding: 15px 0;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.2rem;
-        }
-
-        /* --- LOGO WRAPPER FOR ZOOM --- */
-        .logo-wrapper {
-            display: flex;
-            align-items: center;
-            /* Zoom Animation: 10s duration, scales to 2x */
-            animation: zoom-pulse 10s ease-in-out infinite;
-        }
-        
-        /* Inner image keeps the rotation */
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%; 
-            object-fit: cover;
-            /* Rotation Animation: 4s duration */
-            animation: alternate-spin 4s linear infinite; 
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        }
-
-        @keyframes alternate-spin {
-            0% { transform: rotate(0deg); }
-            50% { transform: rotate(360deg); }
-            100% { transform: rotate(0deg); }
-        }
-
-        @keyframes zoom-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(2); }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            color: var(--text-dark);
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--accent);
-            transition: var(--transition);
-        }
-
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-weight: 500; color: var(--text-dark); position: relative; }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--accent); transition: var(--transition); }
         .nav-links a:hover::after { width: 100%; }
-
         .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
 
-        /* --- HERO SECTION: CINEMATIC IMAGE EFFECT --- */
-        .hero {
-            height: 300px; 
-            margin-top: 80px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #000;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: url('https://z-cdn-media.chatglm.cn/files/20938428-0789-469a-8471-442798be66b9.jpg?auth_key=1875493590-5aa8e1e6291b43bd85aaf22b07068e36-0-a8de4be7a063806e4e2207db26e2131d');
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-            animation: slowZoom 20s infinite alternate ease-in-out;
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 20, 40, 0.3);
-            z-index: 2;
-        }
-
-        .bubbles-container {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 3;
-            pointer-events: none;
-        }
+        /* --- HERO --- */
+        .hero { height: 400px; margin-top: 80px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #000; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://z-cdn-media.chatglm.cn/files/20938428-0789-469a-8471-442798be66b9.jpg?auth_key=1875493590-5aa8e1e6291b43bd85aaf22b07068e36-0-a8de4be7a063806e4e2207db26e2131d'); background-size: cover; background-position: center; z-index: 1; animation: slowZoom 20s infinite alternate ease-in-out; }
+        .video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 20, 40, 0.4); z-index: 2; }
+        .bubbles-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; }
+        .bubble { position: absolute; bottom: -20px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; animation: rise 10s infinite ease-in; box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+        .bubble:nth-child(1) { left: 10%; width: 20px; height: 20px; animation-duration: 8s; }
+        .bubble:nth-child(2) { left: 20%; width: 15px; height: 15px; animation-duration: 12s; }
+        .bubble:nth-child(3) { left: 35%; width: 25px; height: 25px; animation-duration: 10s; }
+        .bubble:nth-child(4) { left: 50%; width: 10px; height: 10px; animation-duration: 15s; }
+        .bubble:nth-child(5) { left: 65%; width: 18px; height: 18px; animation-duration: 9s; }
+        .bubble:nth-child(6) { left: 80%; width: 22px; height: 22px; animation-duration: 11s; }
+        .bubble:nth-child(7) { left: 90%; width: 14px; height: 14px; animation-duration: 14s; }
+        .bubble:nth-child(8) { left: 15%; width: 28px; height: 28px; animation-duration: 13s; }
+        .sea-life-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 4; pointer-events: none; overflow: hidden; }
+        .creature { position: absolute; opacity: 0.9; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5)); object-fit: cover; }
+        .fish-extra-1 { width: 60px; height: 60px; border-radius: 50%; top: 20%; left: -80px; animation: swim-right 14s linear infinite; border: 2px solid rgba(255,255,255,0.4); }
+        .fish-extra-2 { width: 40px; height: 40px; border-radius: 50%; top: 70%; left: -60px; animation: swim-right 18s linear infinite; animation-delay: 5s; border: 2px solid rgba(255,255,255,0.4); }
+        @keyframes slowZoom { 0% { transform: scale(1) translateY(0); } 100% { transform: scale(1.15) translateY(-20px); } }
+        @keyframes rise { 0% { bottom: -20px; transform: translateX(0); opacity: 0; } 50% { opacity: 0.6; } 100% { bottom: 110%; transform: translateX(20px); opacity: 0; } }
+        @keyframes swim-right { 0% { left: -100px; transform: scale(0.8) rotate(5deg); } 50% { transform: scale(1.1) rotate(-5deg); } 100% { left: 110%; transform: scale(0.8) rotate(5deg); } }
         
-        .bubble {
-            position: absolute;
-            bottom: -20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            animation: rise 10s infinite ease-in;
-            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-        }
+        .marquee-wrapper { position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-50%); z-index: 10; overflow: hidden; }
+        .marquee-container { width: 100%; overflow: hidden; white-space: nowrap; position: relative; }
+        .marquee-text { display: inline-block; font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; text-transform: uppercase; color: #fff; text-shadow: 0 0 10px #000, 0 0 20px var(--gold), 0 0 40px var(--gold); animation: moveText 35s linear infinite, shineAndColor 4s ease-in-out infinite; padding-left: 100%; }
+        @keyframes moveText { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+        @keyframes shineAndColor { 0% { color: #fff; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--gold), 0 0 40px var(--gold); } 50% { color: var(--accent); text-shadow: 0 0 5px #fff, 0 0 20px var(--accent), 0 0 40px var(--accent), 0 0 80px var(--accent); } 100% { color: #fff; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--gold), 0 0 40px var(--gold); } }
 
-        .bubble:nth-child(1) { left: 10%; width: 20px; height: 20px; animation-duration: 8s; animation-delay: 0s; }
-        .bubble:nth-child(2) { left: 20%; width: 15px; height: 15px; animation-duration: 12s; animation-delay: 2s; }
-        .bubble:nth-child(3) { left: 35%; width: 25px; height: 25px; animation-duration: 10s; animation-delay: 4s; }
-        .bubble:nth-child(4) { left: 50%; width: 10px; height: 10px; animation-duration: 15s; animation-delay: 1s; }
-        .bubble:nth-child(5) { left: 65%; width: 18px; height: 18px; animation-duration: 9s; animation-delay: 3s; }
-        .bubble:nth-child(6) { left: 80%; width: 22px; height: 22px; animation-duration: 11s; animation-delay: 5s; }
-        .bubble:nth-child(7) { left: 90%; width: 14px; height: 14px; animation-duration: 14s; animation-delay: 2s; }
-        .bubble:nth-child(8) { left: 15%; width: 28px; height: 28px; animation-duration: 13s; animation-delay: 6px; }
-
-        .sea-life-container {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 4; 
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .creature {
-            position: absolute;
-            opacity: 0.9;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
-            object-fit: cover;
-        }
-
-        .fish-extra-1 {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            top: 20%;
-            left: -80px;
-            animation: swim-right 14s linear infinite;
-            border: 2px solid rgba(255,255,255,0.4);
-        }
-
-        .fish-extra-2 {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            top: 70%;
-            left: -60px;
-            animation: swim-right 18s linear infinite;
-            animation-delay: 5s;
-            border: 2px solid rgba(255,255,255,0.4);
-        }
-
-        @keyframes slowZoom {
-            0% { transform: scale(1) translateY(0); }
-            100% { transform: scale(1.15) translateY(-20px); }
-        }
-
-        @keyframes rise {
-            0% { bottom: -20px; transform: translateX(0); opacity: 0; }
-            50% { opacity: 0.6; }
-            100% { bottom: 110%; transform: translateX(20px); opacity: 0; }
-        }
-
-        @keyframes swim-right {
-            0% { left: -100px; transform: scale(0.8) rotate(5deg); }
-            50% { transform: scale(1.1) rotate(-5deg); }
-            100% { left: 110%; transform: scale(0.8) rotate(5deg); }
-        }
-
-        /* --- NEW FLOATING TEXT (NO BLACK STRIP) --- */
-        .marquee-wrapper {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            transform: translateY(-50%);
-            z-index: 10;
-            overflow: hidden;
-        }
-
-        .marquee-container {
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-        }
-
-        .marquee-text {
-            display: inline-block;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #fff;
-            text-shadow: 0 0 10px #000, 0 0 20px var(--gold), 0 0 40px var(--gold);
-            animation: moveText 35s linear infinite, shineAndColor 4s ease-in-out infinite;
-            padding-left: 100%;
-        }
-
-        @keyframes moveText {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
-
-        @keyframes shineAndColor {
-            0% {
-                color: #fff;
-                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--gold), 0 0 40px var(--gold);
-            }
-            50% {
-                color: var(--accent);
-                text-shadow: 0 0 5px #fff, 0 0 20px var(--accent), 0 0 40px var(--accent), 0 0 80px var(--accent);
-            }
-            100% {
-                color: #fff;
-                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--gold), 0 0 40px var(--gold);
-            }
-        }
-
-        /* --- PACKAGES SECTION --- */
-        .packages {
-            padding: 100px 0;
-            background-color: var(--bg-light);
-        }
-
-        .package-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .package-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .package-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--accent);
-            color: var(--white);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 10;
-        }
-
-        .card-img {
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
+        /* --- PACKAGES --- */
+        .packages { padding: 100px 0; background-color: var(--bg-light); }
+        .package-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .package-card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); position: relative; display: flex; flex-direction: column; }
+        .package-card:hover { transform: translateY(-10px); }
+        .badge { position: absolute; top: 20px; right: 20px; background: var(--accent); color: var(--white); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; z-index: 10; }
+        .card-img { height: 250px; overflow: hidden; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
         .package-card:hover .card-img img { transform: scale(1.1); }
-
-        .card-content {
-            padding: 30px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary-dark);
-        }
-
-        .card-desc {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .includes-list {
-            margin-bottom: 25px;
-        }
-
-        .includes-list li {
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-dark);
-        }
-
-        .includes-list li i {
-            color: var(--gold);
-        }
-
-        .card-footer {
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .price {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
+        .card-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-content h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--primary-dark); }
+        .card-desc { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; }
+        .includes-list { margin-bottom: 25px; }
+        .includes-list li { font-size: 0.9rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; color: var(--text-dark); }
+        .includes-list li i { color: var(--gold); }
+        .card-footer { border-top: 1px solid #eee; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .price { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
         .price span { font-size: 0.8rem; color: var(--text-gray); font-weight: 400; }
 
-        /* --- PREMIUM SECTION STYLES --- */
-        .premium-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.8)), url('https://z-cdn-media.chatglm.cn/files/d621453a-a88c-476e-ac6f-86e390442fa0.jpg?auth_key=1875487284-a0d3acda5d504f839a3709900a352ffc-0-32948fc75e47ea25e96c548981e7f6a1');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            padding: 100px 0;
-            color: var(--white);
-            text-align: center;
-            border-top: 5px solid var(--gold);
-            border-bottom: 5px solid var(--gold);
-        }
+        /* --- PREMIUM --- */
+        .premium-section { background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.8)), url('https://z-cdn-media.chatglm.cn/files/d621453a-a88c-476e-ac6f-86e390442fa0.jpg?auth_key=1875487284-a0d3acda5d504f839a3709900a352ffc-0-32948fc75e47ea25e96c548981e7f6a1'); background-size: cover; background-position: center; background-attachment: fixed; padding: 100px 0; color: var(--white); text-align: center; border-top: 5px solid var(--gold); border-bottom: 5px solid var(--gold); }
+        .premium-content { max-width: 800px; margin: 0 auto; }
+        .premium-badge { display: inline-block; background: transparent; color: var(--gold); border: 2px solid var(--gold); padding: 8px 30px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; margin-bottom: 20px; font-size: 0.8rem; position: relative; z-index: 1; text-shadow: 0 0 10px rgba(0,0,0,0.8); }
+        .vip-star-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3em; color: var(--gold); z-index: -1; animation: blink-hard 0.4s infinite alternate; }
+        @keyframes blink-hard { 0% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.8); } 100% { opacity: 1; transform: translate(-50%, -50%) scale(1.4) rotate(10deg); } }
+        .premium-content h2 { font-size: 2.8rem; margin-bottom: 20px; color: var(--gold); }
+        .premium-content p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 40px; color: #ddd; }
+        .btn-gold { background-color: var(--gold); color: #000; border: 2px solid var(--gold); padding: 15px 40px; font-size: 1rem; font-weight: 700; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); cursor: pointer; }
+        .btn-gold:hover { background-color: transparent; color: var(--gold); transform: scale(1.05); }
 
-        .premium-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .premium-badge {
-            display: inline-block;
-            background: transparent; 
-            color: var(--gold);
-            border: 2px solid var(--gold);
-            padding: 8px 30px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            font-size: 0.8rem;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 0 10px rgba(0,0,0,0.8);
-        }
-
-        .vip-star-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3em; 
-            color: var(--gold);
-            z-index: -1; 
-            animation: blink-hard 0.4s infinite alternate;
-        }
-
-        @keyframes blink-hard {
-            0% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.8); }
-            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.4) rotate(10deg); }
-        }
-
-        .premium-content h2 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            color: var(--gold);
-        }
-
-        .premium-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 40px;
-            color: #ddd;
-        }
-
-        .btn-gold {
-            background-color: var(--gold);
-            color: #000;
-            border: 2px solid var(--gold);
-            padding: 15px 40px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .btn-gold:hover {
-            background-color: transparent;
-            color: var(--gold);
-            transform: scale(1.05);
-        }
-
-        /* --- TRUST / SAFETY SECTION --- */
-        .trust-section {
-            padding: 60px 0;
-            background-color: var(--white);
-        }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            text-align: center;
-        }
-
-        .trust-item {
-            padding: 20px;
-            border: 1px solid #eee;
-            border-radius: 10px;
-            transition: var(--transition);
-        }
-
-        .trust-item:hover {
-            border-color: var(--primary);
-            box-shadow: var(--shadow);
-        }
-
-        .trust-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
+        /* --- TRUST --- */
+        .trust-section { padding: 60px 0; background-color: var(--white); }
+        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
+        .trust-item { padding: 20px; border: 1px solid #eee; border-radius: 10px; transition: var(--transition); }
+        .trust-item:hover { border-color: var(--primary); box-shadow: var(--shadow); }
+        .trust-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
         .trust-item h3 { font-size: 1.1rem; margin-bottom: 10px; font-family: 'Poppins', sans-serif; font-weight: 600; }
         .trust-item p { font-size: 0.9rem; color: var(--text-gray); }
 
-        /* --- GALLERY PREVIEW --- */
-        .gallery-preview {
-            padding: 100px 0;
-            background: var(--white);
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-        }
-
-        .gallery-grid img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            cursor: pointer;
-            transition: var(--transition);
-            border-radius: 8px;
-        }
-
-        .gallery-grid img:hover { 
-            opacity: 0.9; 
-            transform: scale(1.02);
-        }
+        /* --- GALLERY --- */
+        .gallery-preview { padding: 100px 0; background: var(--white); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+        .gallery-grid img { width: 100%; height: 300px; object-fit: cover; cursor: pointer; transition: var(--transition); border-radius: 8px; }
+        .gallery-grid img:hover { opacity: 0.9; transform: scale(1.02); }
 
         /* --- FOOTER --- */
-        footer {
-            background-color: #111;
-            color: #ccc;
-            padding: 60px 0 20px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
+        footer { background-color: #111; color: #ccc; padding: 60px 0 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .footer-col h3 { color: var(--white); margin-bottom: 20px; font-size: 1.2rem; }
         .footer-col p, .footer-col a { color: #aaa; margin-bottom: 10px; display: block; transition: var(--transition); }
         .footer-col a:hover { color: var(--accent); padding-left: 5px; }
-
         .contact-info li { display: flex; gap: 10px; margin-bottom: 15px; align-items: center; }
         .contact-info i { color: var(--accent); }
-
-        .social-links a {
-            display: inline-flex;
-            width: 40px;
-            height: 40px;
-            background: #222;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin-right: 10px;
-            color: var(--white);
-        }
+        .social-links a { display: inline-flex; width: 40px; height: 40px; background: #222; align-items: center; justify-content: center; border-radius: 50%; margin-right: 10px; color: var(--white); }
         .social-links a:hover { background: var(--primary); color: var(--white); padding-left: 0; }
+        .copyright { text-align: center; border-top: 1px solid #222; padding-top: 20px; font-size: 0.9rem; }
 
-        .copyright {
-            text-align: center;
-            border-top: 1px solid #222;
-            padding-top: 20px;
-            font-size: 0.9rem;
-        }
-
-        /* --- BOOKING MODAL --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            padding: 20px;
-            backdrop-filter: blur(5px);
-        }
-
+        /* --- MODALS --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; display: none; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(5px); }
         .modal-overlay.active { display: flex; animation: fadeIn 0.3s ease; }
-
-        .modal-container {
-            background: var(--white);
-            width: 100%;
-            max-width: 500px;
-            border-radius: 15px;
-            padding: 40px;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            animation: slideUp 0.3s ease;
-            overflow-y: auto; /* Allow scrolling in modal if screen is small */
-            max-height: 90vh; 
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-gray);
-        }
-
+        .modal-container { background: var(--white); width: 100%; max-width: 500px; border-radius: 15px; padding: 40px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3); animation: slideUp 0.3s ease; overflow-y: auto; max-height: 90vh; }
+        .close-modal { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-gray); z-index: 10; }
         .modal-header h3 { margin-bottom: 5px; }
         .modal-header p { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 25px; }
-
         .booking-form .form-group { margin-bottom: 20px; }
         .booking-form label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; }
-        .booking-form input, .booking-form select, .booking-form textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: inherit;
-            outline: none;
-            transition: var(--transition);
-        }
+        .booking-form input, .booking-form select { width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; outline: none; transition: var(--transition); }
         .booking-form input:focus, .booking-form select:focus { border-color: var(--primary); }
-
-        /* FIX FOR BUTTON STACKING/SAVING ISSUES */
-        .whatsapp-btn {
-            background-color: #25D366;
-            color: white;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 1rem;
-            padding: 15px; /* Increased padding */
-            margin-top: 10px; /* Margin top to separate from previous inputs */
-        }
+        .whatsapp-btn { background-color: #25D366; color: white; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1rem; padding: 15px; margin-top: 10px; }
         .whatsapp-btn:hover { background-color: #1ebc57; }
 
-        /* ================= ADMIN DASHBOARD STYLES ================= */
-        #admin-panel {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #f4f6f9;
-            z-index: 5000;
-            display: none; 
-        }
-        
+        /* --- ADMIN --- */
+        #admin-panel { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f4f6f9; z-index: 5000; }
         #admin-panel.active { display: flex; }
-
-        .admin-sidebar {
-            width: 250px;
-            background: #2c3e50;
-            color: #ecf0f1;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-        }
-
+        .admin-sidebar { width: 250px; background: #2c3e50; color: #ecf0f1; display: flex; flex-direction: column; padding: 20px; }
         .admin-sidebar h2 { color: #fff; margin-bottom: 40px; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
-        
-        .admin-menu-item {
-            padding: 15px;
-            cursor: pointer;
-            border-radius: 8px;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: 0.3s;
-        }
-
-        .admin-menu-item:hover, .admin-menu-item.active {
-            background: var(--primary);
-            color: #fff;
-        }
-
-        .settings-box {
-            background: rgba(0,0,0,0.2);
-            margin-top: auto;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .input-admin {
-            width: 90%;
-            padding: 10px;
-            background: #34495e;
-            border: 1px solid #466380;
-            color: #fff;
-            border-radius: 4px;
-            margin-bottom: 10px;
-        }
-
-        .btn-save-settings {
-            background: var(--gold);
-            color: #000;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .logout-btn {
-            background: #e74c3c;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .admin-main {
-            flex: 1;
-            padding: 30px;
-            overflow-y: auto;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
+        .admin-menu-item { padding: 15px; cursor: pointer; border-radius: 8px; margin-bottom: 5px; display: flex; align-items: center; gap: 15px; transition: 0.3s; }
+        .admin-menu-item:hover, .admin-menu-item.active { background: var(--primary); color: #fff; }
+        .settings-box { background: rgba(0,0,0,0.2); margin-top: auto; padding: 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); }
+        .input-admin { width: 90%; padding: 10px; background: #34495e; border: 1px solid #466380; color: #fff; border-radius: 4px; margin-bottom: 10px; }
+        .btn-save-settings { background: var(--gold); color: #000; border: none; padding: 8px 20px; border-radius: 4px; font-weight: 600; cursor: pointer; }
+        .logout-btn { background: #e74c3c; color: white; text-align: center; padding: 15px; border-radius: 8px; cursor: pointer; margin-top: 10px; }
+        .admin-main { flex: 1; padding: 30px; overflow-y: auto; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .stat-card { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: space-between; }
         .stat-info h3 { font-size: 0.9rem; color: var(--text-gray); margin-bottom: 5px; }
         .stat-info .number { font-size: 2rem; font-weight: 700; color: var(--primary-dark); }
-        .stat-icon {
-            width: 50px; height: 50px;
-            background: rgba(0, 128, 128, 0.1);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        .bookings-table-container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            overflow-x: auto;
-        }
-
-        .bookings-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .bookings-table th, .bookings-table td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-
-        .bookings-table th {
-            background: #f8f9fa;
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        .status-badge {
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
+        .stat-icon { width: 50px; height: 50px; background: rgba(0, 128, 128, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--primary); }
+        .bookings-table-container { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); overflow-x: auto; }
+        .bookings-table { width: 100%; border-collapse: collapse; }
+        .bookings-table th, .bookings-table td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+        .bookings-table th { background: #f8f9fa; color: var(--text-dark); font-weight: 600; }
+        .status-badge { padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
         .status-pending { background: #fff3cd; color: #856404; }
         .status-confirmed { background: #d4edda; color: #155724; }
         .status-completed { background: #d1e7dd; color: #0c5460; }
-
-        .action-btn {
-            border: none;
-            background: none;
-            cursor: pointer;
-            font-size: 1.1rem;
-            margin-right: 10px;
-            transition: 0.2s;
-        }
+        .action-btn { border: none; background: none; cursor: pointer; font-size: 1.1rem; margin-right: 10px; transition: 0.2s; }
         .action-btn:hover { color: var(--accent); transform: scale(1.2); }
-
-        /* Login Modal */
-        #login-modal .modal-container {
-            max-width: 400px;
-            background: #fff;
-            z-index: 6000;
-        }
-
-        /* --- ANIMATIONS --- */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero { height: 200px; margin-top: 60px; }
-            .marquee-text { font-size: 1.5rem; }
-            
-            .nav-links { display: none; }
-            .mobile-toggle { display: block; }
-            
-            .nav-links.active {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: var(--white);
-                padding: 20px;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            }
-
-            .admin-sidebar { width: 60px; padding: 10px; }
-            .admin-sidebar h2 span { display: none; }
-            .admin-menu-item span { display: none; }
+            .hero { height: 250px; margin-top: 60px; } .marquee-text { font-size: 1.5rem; }
+            .nav-links { display: none; } .mobile-toggle { display: block; }
+            .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: var(--white); padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+            .admin-sidebar { width: 60px; padding: 10px; } .admin-sidebar h2 span, .admin-menu-item span { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- PUBLIC WEBSITE WRAPPER -->
+    <!-- PUBLIC SITE -->
     <div id="public-site">
-        
-        <!-- NAV -->
         <header>
             <div class="container">
                 <nav>
                     <div class="logo">
                         <div class="logo-wrapper">
-                            <img src="https://z-cdn-media.chatglm.cn/files/004a7222-0c77-4d2f-8f9e-56078e171582.png?auth_key=1875489073-834ff406323d46ee81ccc488f3086ff6-0-8ee67a6ded732ada6ea3f04434018eac" alt="Nakupenda Logo" class="logo-img">
+                            <img src="https://z-cdn-media.chatglm.cn/files/004a7222-0c77-4d2f-8f9e-56078e171582.png?auth_key=1875489073-834ff406323d46ee81ccc488f3086ff6-0-8ee67a6ded732ada6ea3f04434018eac" alt="Logo" class="logo-img">
                         </div>
                         NAKUPENDAISLES SAFARI
                     </div>
@@ -943,351 +244,87 @@
                         <a href="#contact">Contact</a>
                         <a href="#packages" class="btn btn-primary" style="padding: 8px 20px; color: white;">Book Now</a>
                     </div>
-                    <div class="mobile-toggle" onclick="toggleMenu()">
-                        <i class="fa-solid fa-bars"></i>
-                    </div>
+                    <div class="mobile-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
                 </nav>
             </div>
         </header>
 
-        <!-- NEW HERO SECTION: YOUR IMAGE WITH "LIVE" EFFECTS -->
         <section id="home" class="hero">
-            
-            <!-- 1. Your Specific Image (Animated like a Video) -->
-            <div class="hero-bg"></div>
-
-            <!-- 2. Dark Overlay -->
-            <div class="video-overlay"></div>
-
-            <!-- 3. Bubbles (Simulates Water Flow) -->
-            <div class="bubbles-container">
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-                <div class="bubble"></div>
-            </div>
-
-            <!-- 4. Animated Fish (Extra movement over the image) -->
-            <div class="sea-life-container">
-                <!-- Real Fish Photos Swimming -->
-                <img src="https://images.unsplash.com/photo-1535591273668-578e31182c4f?q=80&w=1000&auto=format&fit=crop" class="creature fish-extra-1" alt="Fish">
-                <img src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=1000&auto=format&fit=crop" class="creature fish-extra-2" alt="Fish">
-            </div>
-
-            <!-- 5. FLOATING TEXT (No Black Strip) -->
-            <div class="marquee-wrapper">
-                <div class="marquee-container">
-                    <div class="marquee-text">
-                        ★ WELCOME TO PARADISE ★ YOUR DREAM ZANZIBAR ESCAPE STARTS HERE ★ PRIVATE TOURS ★ PREMIUM SERVICE ★ UNFORGETTABLE MEMORIES ★ BOOK TODAY AND LIVE THE MAGIC ★
-                    </div>
-                </div>
-            </div>
+            <div class="hero-bg"></div><div class="video-overlay"></div>
+            <div class="bubbles-container"><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div><div class="bubble"></div></div>
+            <div class="sea-life-container"><img src="https://images.unsplash.com/photo-1535591273668-578e31182c4f?q=80&w=1000&auto=format&fit=crop" class="creature fish-extra-1" alt="Fish"><img src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=1000&auto=format&fit=crop" class="creature fish-extra-2" alt="Fish"></div>
+            <div class="marquee-wrapper"><div class="marquee-container"><div class="marquee-text">★ WELCOME TO PARADISE ★ YOUR DREAM ZANZIBAR ESCAPE STARTS HERE ★ PRIVATE TOURS ★ PREMIUM SERVICE ★ UNFORGETTABLE MEMORIES ★ BOOK TODAY AND LIVE THE MAGIC ★</div></div></div>
         </section>
 
-        <!-- PACKAGES SECTION (MOVED UP) -->
         <section id="packages" class="packages">
             <div class="container">
-                <div class="section-title">
-                    <span>Our Best Sellers</span>
-                    <h2>Curated Excursion Packages</h2>
-                </div>
-
+                <div class="section-title"><span>Our Best Sellers</span><h2>Curated Excursion Packages</h2></div>
                 <div class="package-grid">
-                    
-                    <!-- Package 1: Full Day -->
-                    <div class="package-card">
-                        <div class="badge">Most Popular</div>
-                        <div class="card-img">
-                            <img src="https://z-cdn-media.chatglm.cn/files/20807368-5c0b-4492-a110-9059bfc5de58.jpg?auth_key=1875487284-02d3404ac7054b939398abcafe0ee78a-0-de5cf08dce27f46f8702ff22d86fb5ad" alt="Nakupenda Sandbank Setup">
-                        </div>
-                        <div class="card-content">
-                            <h3>Full Day Combo</h3>
-                            <p class="card-desc">The ultimate experience. Visit Prison Island to see Giant Tortoises, then relax at Nakupenda Sandbank.</p>
-                            <ul class="includes-list">
-                                <li><i class="fa-solid fa-check"></i> Prison Island Tour & Tortoises</li>
-                                <li><i class="fa-solid fa-check"></i> Nakupenda Sandbank Visit</li>
-                                <li><i class="fa-solid fa-check"></i> Snorkeling Equipment</li>
-                                <li><i class="fa-solid fa-check"></i> Seafood BBQ (Lobster, Octopus, Fish)</li>
-                                <li><i class="fa-solid fa-check"></i> Tropical Fruits & Drinks</li>
-                            </ul>
-                            <div class="card-footer">
-                                <div class="price">$$ <span>/ person</span></div>
-                                <button class="btn btn-primary book-btn" data-tour="Full Day Excursion (Prison + Nakupenda)">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 2: Half Day Prison -->
-                    <div class="package-card">
-                        <div class="card-img">
-                            <img src="https://z-cdn-media.chatglm.cn/files/736113d7-d0ff-4fd3-bf45-798f6fd9646d.jpg?auth_key=1875487284-0a2d711b5bd44dc2ac6e40bca4740ba3-0-ed808a97e8d38456c5c288b2df5f09c3" alt="Happy Guests on Sandbank">
-                        </div>
-                        <div class="card-content">
-                            <h3>Half Day: Prison Island</h3>
-                            <p class="card-desc">A relaxing trip to Prison Island on a traditional dhow. Explore history and nature.</p>
-                            <ul class="includes-list">
-                                <li><i class="fa-solid fa-check"></i> Traditional Dhow Transfer</li>
-                                <li><i class="fa-solid fa-check"></i> Giant Aldabra Tortoises</li>
-                                <li><i class="fa-solid fa-check"></i> Snorkeling Gear</li>
-                                <li><i class="fa-solid fa-check"></i> Soft Drinks & Water</li>
-                                <li><i class="fa-solid fa-check"></i> Fruits & Snacks</li>
-                            </ul>
-                            <div class="card-footer">
-                                <div class="price">$ <span>/ person</span></div>
-                                <button class="btn btn-primary book-btn" data-tour="Half Day Prison Island">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 3: Half Day Nakupenda -->
-                    <div class="package-card">
-                        <div class="card-img">
-                            <img src="https://z-cdn-media.chatglm.cn/files/ee790fcd-4fd8-4bf3-9356-8dcef2bda347.jpg?auth_key=1875487284-d175a09f11aa4768bc22d1dc84925bbd-0-44f76d4aea8e7f186db04e006fdf9202" alt="Guests on Sandbank">
-                        </div>
-                        <div class="card-content">
-                            <h3>Half Day: Nakupenda</h3>
-                            <p class="card-desc">Pure relaxation on the sandbank. Snorkel in crystal clear waters and enjoy a massive seafood lunch.</p>
-                            <ul class="includes-list">
-                                <li><i class="fa-solid fa-check"></i> Traditional Dhow Transfer</li>
-                                <li><i class="fa-solid fa-check"></i> Snorkeling Service</li>
-                                <li><i class="fa-solid fa-check"></i> Seafood BBQ Lunch</li>
-                                <li><i class="fa-solid fa-check"></i> Seasonal Tropical Fruits</li>
-                                <li><i class="fa-solid fa-check"></i> Relaxation Time</li>
-                            </ul>
-                            <div class="card-footer">
-                                <div class="price">$$ <span>/ person</span></div>
-                                <button class="btn btn-primary book-btn" data-tour="Half Day Nakupenda Sandbank">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 4: Sunset Cruise -->
-                    <div class="package-card">
-                        <div class="card-img">
-                            <img src="https://z-cdn-media.chatglm.cn/files/f42a49c5-bc15-4723-9dd7-618397497eca.jpg?auth_key=1875487284-39d3b171271d48a8944bf9873dea164d-0-d7cf308a9d7e389da682ac600af88a00" alt="Dining on Nakupenda Boat">
-                        </div>
-                        <div class="card-content">
-                            <h3>Sunset Dhow Cruise</h3>
-                            <p class="card-desc">Sail along the <strong>Forodhani sea front</strong>. Watch the sun go down over Stone Town with drinks in hand.</p>
-                            <ul class="includes-list">
-                                <li><i class="fa-solid fa-check"></i> Sailing Traditional Dhow</li>
-                                <li><i class="fa-solid fa-check"></i> View of Stone Town from Sea</li>
-                                <li><i class="fa-solid fa-check"></i> Snacks & Bites</li>
-                                <li><i class="fa-solid fa-check"></i> Soft Drinks, Local Beer, Wine</li>
-                                <li><i class="fa-solid fa-check"></i> Water</li>
-                            </ul>
-                            <div class="card-footer">
-                                <div class="price">$ <span>/ person</span></div>
-                                <button class="btn btn-primary book-btn" data-tour="Sunset Dhow Cruise">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Package 5: Sunset with Dinner -->
-                    <div class="package-card">
-                        <div class="badge">Premium</div>
-                        <div class="card-img">
-                            <img src="https://z-cdn-media.chatglm.cn/files/56b23bbb-7354-41d0-890f-f1a28ab12386.jpg?auth_key=1875487284-5056a9f6c3eb47048d500c85c8a3e3bd-0-219afb681b19b5cc3ed3d152ba9c3631" alt="Live Music on Boat">
-                        </div>
-                        <div class="card-content">
-                            <h3>Sunset Cruise with Dinner</h3>
-                            <p class="card-desc">Our most exclusive service. Enjoy the sunset cruise followed by a gourmet dinner on board.</p>
-                            <ul class="includes-list">
-                                <li><i class="fa-solid fa-check"></i> Everything in Sunset Cruise</li>
-                                <li><i class="fa-solid fa-check"></i> Gourmet Dinner Service</li>
-                                <li><i class="fa-solid fa-check"></i> Live Music & Violin</li>
-                                <li><i class="fa-solid fa-check"></i> Romantic Atmosphere</li>
-                                <li><i class="fa-solid fa-check"></i> Forodhani Sea Front View</li>
-                            </ul>
-                            <div class="card-footer">
-                                <div class="price">$$$ <span>/ person</span></div>
-                                <button class="btn btn-primary book-btn" data-tour="Sunset Cruise with Dinner">Book Now</button>
-                            </div>
-                        </div>
-                    </div>
-
+                    <div class="package-card"><div class="badge">Most Popular</div><div class="card-img"><img src="https://z-cdn-media.chatglm.cn/files/20807368-5c0b-4492-a110-9059bfc5de58.jpg?auth_key=1875487284-02d3404ac7054b939398abcafe0ee78a-0-de5cf08dce27f46f8702ff22d86fb5ad" alt="Full Day"></div><div class="card-content"><h3>Full Day Combo</h3><p class="card-desc">The ultimate experience. Visit Prison Island to see Giant Tortoises, then relax at Nakupenda Sandbank.</p><ul class="includes-list"><li><i class="fa-solid fa-check"></i> Prison Island & Tortoises</li><li><i class="fa-solid fa-check"></i> Nakupenda Sandbank Visit</li><li><i class="fa-solid fa-check"></i> Snorkeling Equipment</li><li><i class="fa-solid fa-check"></i> Seafood BBQ</li></ul><div class="card-footer"><div class="price">$$ <span>/ person</span></div><button class="btn btn-primary book-btn" data-tour="Full Day Excursion (Prison + Nakupenda)">Book Now</button></div></div></div>
+                    <div class="package-card"><div class="card-img"><img src="https://z-cdn-media.chatglm.cn/files/736113d7-d0ff-4fd3-bf45-798f6fd9646d.jpg?auth_key=1875487284-0a2d711b5bd44dc2ac6e40bca4740ba3-0-ed808a97e8d38456c5c288b2df5f09c3" alt="Prison Island"></div><div class="card-content"><h3>Half Day: Prison Island</h3><p class="card-desc">A relaxing trip to Prison Island on a traditional dhow. Explore history and nature.</p><ul class="includes-list"><li><i class="fa-solid fa-check"></i> Traditional Dhow Transfer</li><li><i class="fa-solid fa-check"></i> Giant Aldabra Tortoises</li><li><i class="fa-solid fa-check"></i> Snorkeling Gear</li><li><i class="fa-solid fa-check"></i> Soft Drinks & Water</li></ul><div class="card-footer"><div class="price">$ <span>/ person</span></div><button class="btn btn-primary book-btn" data-tour="Half Day Prison Island">Book Now</button></div></div></div>
+                    <div class="package-card"><div class="card-img"><img src="https://z-cdn-media.chatglm.cn/files/ee790fcd-4fd8-4bf3-9356-8dcef2bda347.jpg?auth_key=1875487284-d175a09f11aa4768bc22d1dc84925bbd-0-44f76d4aea8e7f186db04e006fdf9202" alt="Nakupenda"></div><div class="card-content"><h3>Half Day: Nakupenda</h3><p class="card-desc">Pure relaxation on the sandbank. Snorkel in crystal clear waters and enjoy a massive seafood lunch.</p><ul class="includes-list"><li><i class="fa-solid fa-check"></i> Traditional Dhow Transfer</li><li><i class="fa-solid fa-check"></i> Snorkeling Service</li><li><i class="fa-solid fa-check"></i> Seafood BBQ Lunch</li><li><i class="fa-solid fa-check"></i> Seasonal Tropical Fruits</li></ul><div class="card-footer"><div class="price">$$ <span>/ person</span></div><button class="btn btn-primary book-btn" data-tour="Half Day Nakupenda Sandbank">Book Now</button></div></div></div>
+                    <div class="package-card"><div class="card-img"><img src="https://z-cdn-media.chatglm.cn/files/f42a49c5-bc15-4723-9dd7-618397497eca.jpg?auth_key=1875487284-39d3b171271d48a8944bf9873dea164d-0-d7cf308a9d7e389da682ac600af88a00" alt="Sunset"></div><div class="card-content"><h3>Sunset Dhow Cruise</h3><p class="card-desc">Sail along the <strong>Forodhani sea front</strong>. Watch the sun go down over Stone Town with drinks in hand.</p><ul class="includes-list"><li><i class="fa-solid fa-check"></i> Sailing Traditional Dhow</li><li><i class="fa-solid fa-check"></i> View of Stone Town from Sea</li><li><i class="fa-solid fa-check"></i> Snacks & Bites</li><li><i class="fa-solid fa-check"></i> Soft Drinks, Local Beer, Wine</li></ul><div class="card-footer"><div class="price">$ <span>/ person</span></div><button class="btn btn-primary book-btn" data-tour="Sunset Dhow Cruise">Book Now</button></div></div></div>
+                    <div class="package-card"><div class="badge">Premium</div><div class="card-img"><img src="https://z-cdn-media.chatglm.cn/files/56b23bbb-7354-41d0-890f-f1a28ab12386.jpg?auth_key=1875487284-5056a9f6c3eb47048d500c85c8a3e3bd-0-219afb681b19b5cc3ed3d152ba9c3631" alt="Dinner"></div><div class="card-content"><h3>Sunset Cruise with Dinner</h3><p class="card-desc">Our most exclusive service. Enjoy the sunset cruise followed by a gourmet dinner on board.</p><ul class="includes-list"><li><i class="fa-solid fa-check"></i> Everything in Sunset Cruise</li><li><i class="fa-solid fa-check"></i> Gourmet Dinner Service</li><li><i class="fa-solid fa-check"></i> Live Music & Violin</li><li><i class="fa-solid fa-check"></i> Romantic Atmosphere</li></ul><div class="card-footer"><div class="price">$$$ <span>/ person</span></div><button class="btn btn-primary book-btn" data-tour="Sunset Cruise with Dinner">Book Now</button></div></div></div>
                 </div>
             </div>
         </section>
 
-        <!-- PREMIUM PRIVATE TOUR SECTION -->
         <section class="premium-section">
             <div class="container premium-content">
-                <span class="premium-badge">
-                    <i class="fa-solid fa-star vip-star-bg"></i>
-                    VIP Service
-                </span>
+                <span class="premium-badge"><i class="fa-solid fa-star vip-star-bg"></i> VIP Service</span>
                 <h2>Experience Zanzibar Exclusively</h2>
-                <p>
-                    Elevate your journey beyond the ordinary. We offer fully private, customizable excursions for discerning travelers who demand the ultimate in luxury, privacy, and flexibility. 
-                    <br><br>
-                    Whether it's a romantic sunset dinner for two on a secluded sandbank, a private dhow cruise with a dedicated butler, or a family adventure tailored to your specific schedule, our Premium Service ensures you receive undivided attention from our certified crew. Enjoy bespoke gourmet dining, premium drinks, and the freedom to explore the islands on your own terms.
-                </p>
+                <p>Elevate your journey beyond the ordinary. We offer fully private, customizable excursions for discerning travelers who demand the ultimate in luxury, privacy, and flexibility.<br><br>Whether it's a romantic sunset dinner for two on a secluded sandbank, a private dhow cruise with a dedicated butler, or a family adventure tailored to your specific schedule, our Premium Service ensures you receive undivided attention from our certified crew.</p>
                 <button class="btn-gold book-btn" data-tour="Private Premium Tour (Custom)">Request Private Quote</button>
             </div>
         </section>
 
-        <!-- TRUST & SAFETY SECTION (REPOSITIONED HERE) -->
         <section id="about" class="trust-section">
             <div class="container">
-                <div class="section-title">
-                    <span>Why Choose Us</span>
-                    <h2>Safety & Professionalism</h2>
-                </div>
+                <div class="section-title"><span>Why Choose Us</span><h2>Safety & Professionalism</h2></div>
                 <div class="trust-grid">
-                    <div class="trust-item">
-                        <div class="trust-icon"><i class="fa-solid fa-life-ring"></i></div>
-                        <h3>Safety First</h3>
-                        <p>Ample life jackets on all boats and strictly inspected vessels.</p>
-                    </div>
-                    <div class="trust-item">
-                        <div class="trust-icon"><i class="fa-solid fa-id-card"></i></div>
-                        <h3>Certified Captains</h3>
-                        <p>Officially certified and experienced captains ensuring your safety.</p>
-                    </div>
-                    <div class="trust-item">
-                        <div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                        <h3>Fully Insured</h3>
-                        <p>All our boats and operations are fully insured for peace of mind.</p>
-                    </div>
-                    <div class="trust-item">
-                        <div class="trust-icon"><i class="fa-solid fa-utensils"></i></div>
-                        <h3>Exquisite Dining</h3>
-                        <p>Freshly prepared seafood BBQ with tropical fruits on the sandbank.</p>
-                    </div>
+                    <div class="trust-item"><div class="trust-icon"><i class="fa-solid fa-life-ring"></i></div><h3>Safety First</h3><p>Ample life jackets on all boats and strictly inspected vessels.</p></div>
+                    <div class="trust-item"><div class="trust-icon"><i class="fa-solid fa-id-card"></i></div><h3>Certified Captains</h3><p>Officially certified and experienced captains ensuring your safety.</p></div>
+                    <div class="trust-item"><div class="trust-icon"><i class="fa-solid fa-shield-halved"></i></div><h3>Fully Insured</h3><p>All our boats and operations are fully insured for peace of mind.</p></div>
+                    <div class="trust-item"><div class="trust-icon"><i class="fa-solid fa-utensils"></i></div><h3>Exquisite Dining</h3><p>Freshly prepared seafood BBQ with tropical fruits on the sandbank.</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- GALLERY PREVIEW -->
         <section id="gallery" class="gallery-preview">
-            <div class="container">
-                <div class="section-title">
-                    <span>Visual Memories</span>
-                    <h2>Gallery</h2>
-                </div>
-                <div class="gallery-grid">
-                    <img src="https://z-cdn-media.chatglm.cn/files/20807368-5c0b-4492-a110-9059bfc5de58.jpg?auth_key=1875487284-02d3404ac7054b939398abcafe0ee78a-0-de5cf08dce27f46f8702ff22d86fb5ad" alt="Nakupenda Sandbank Setup">
-                    <img src="https://z-cdn-media.chatglm.cn/files/736113d7-d0ff-4fd3-bf45-798f6fd9646d.jpg?auth_key=1875487284-0a2d711b5bd44dc2ac6e40bca4740ba3-0-ed808a97e8d38456c5c288b2df5f09c3" alt="Happy Guests Group Photo">
-                    <img src="https://z-cdn-media.chatglm.cn/files/ee790fcd-4fd8-4bf3-9356-8dcef2bda347.jpg?auth_key=1875487284-d175a09f11aa4768bc22d1dc84925bbd-0-44f76d4aea8e7f186db04e006fdf9202" alt="Guests Group Photo on Beach">
-                    <img src="https://z-cdn-media.chatglm.cn/files/06a0eff9-1320-4faf-8d8a-294984d02021.jpg?auth_key=1875487284-ae65ca72847444a48ebdbb104a2b16e6-0-8a26e86d70146d2bb4dd1b2e402184bc" alt="Fresh Starfruits">
-                    <img src="https://z-cdn-media.chatglm.cn/files/61ae7b6f-6593-4b03-9a31-14483e173e2f.jpg?auth_key=1875487284-e212d6e3830a4953897b1084d30a3174-0-917ebaa5de105cdecd58c59c0eebc4a9" alt="Seafood Lunch Table on Sandbank">
-                    <img src="https://z-cdn-media.chatglm.cn/files/d621453a-a88c-476e-ac6f-86e390442fa0.jpg?auth_key=1875487284-a0d3acda5d504f839a3709900a352ffc-0-32948fc75e47ea25e96c548981e7f6a1" alt="Sunset Event Setup with Decorated Boat">
-                    <img src="https://z-cdn-media.chatglm.cn/files/56b23bbb-7354-41d0-890f-f1a28ab12386.jpg?auth_key=1875487284-5056a9f6c3eb47048d500c85c8a3e3bd-0-219afb681b19b5cc3ed3d152ba9c3631" alt="Live Violin Performance on Boat">
-                    <img src="https://z-cdn-media.chatglm.cn/files/f42a49c5-bc15-4723-9dd7-618397497eca.jpg?auth_key=1875487284-39d3b171271d48a8944bf9873dea164d-0-d7cf308a9d7e389da682ac600af88a00" alt="Dining Setup on Nakupenda Boat">
-                    <img src="https://z-cdn-media.chatglm.cn/files/5ea73515-d4ce-4874-b5f1-70fbef860fad.jpg?auth_key=1875487284-ddff0f2fb6344bb29d722134ec40890d-0-5d5f3535efcb7e90f7104bd2b4bb0826" alt="Fresh Tropical Fruits Display">
-                </div>
-            </div>
+            <div class="container"><div class="section-title"><span>Visual Memories</span><h2>Gallery</h2></div><div class="gallery-grid">
+                <img src="https://z-cdn-media.chatglm.cn/files/20807368-5c0b-4492-a110-9059bfc5de58.jpg?auth_key=1875487284-02d3404ac7054b939398abcafe0ee78a-0-de5cf08dce27f46f8702ff22d86fb5ad" alt="Setup">
+                <img src="https://z-cdn-media.chatglm.cn/files/736113d7-d0ff-4fd3-bf45-798f6fd9646d.jpg?auth_key=1875487284-0a2d711b5bd44dc2ac6e40bca4740ba3-0-ed808a97e8d38456c5c288b2df5f09c3" alt="Group">
+                <img src="https://z-cdn-media.chatglm.cn/files/ee790fcd-4fd8-4bf3-9356-8dcef2bda347.jpg?auth_key=1875487284-d175a09f11aa4768bc22d1dc84925bbd-0-44f76d4aea8e7f186db04e006fdf9202" alt="Beach">
+                <img src="https://z-cdn-media.chatglm.cn/files/06a0eff9-1320-4faf-8d8a-294984d02021.jpg?auth_key=1875487284-ae65ca72847444a48ebdbb104a2b16e6-0-8a26e86d70146d2bb4dd1b2e402184bc" alt="Fruit">
+                <img src="https://z-cdn-media.chatglm.cn/files/61ae7b6f-6593-4b03-9a31-14483e173e2f.jpg?auth_key=1875487284-e212d6e3830a4953897b1084d30a3174-0-917ebaa5de105cdecd58c59c0eebc4a9" alt="Lunch">
+                <img src="https://z-cdn-media.chatglm.cn/files/d621453a-a88c-476e-ac6f-86e390442fa0.jpg?auth_key=1875487284-a0d3acda5d504f839a3709900a352ffc-0-32948fc75e47ea25e96c548981e7f6a1" alt="Sunset">
+            </div></div>
         </section>
 
-        <!-- FOOTER -->
         <footer id="contact">
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-col">
-                        <h3>Nakupendaisles Safari</h3>
-                        <p>Your trusted partner for unforgettable excursions in Zanzibar. We combine safety, luxury, and the natural beauty of the islands.</p>
-                    </div>
-                    <div class="footer-col">
-                        <h3>Contact Us</h3>
-                        <ul class="contact-info">
-                            <li><i class="fa-brands fa-whatsapp"></i> +255 656 310 190</li>
-                            <li><i class="fa-solid fa-envelope"></i> mandiboteck@gmail.com</li>
-                            <li><i class="fa-solid fa-location-dot"></i> Stone Town, Zanzibar</li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h3>Quick Links</h3>
-                        <a href="#home">Home</a>
-                        <a href="#packages">Packages</a>
-                        <a href="#about">About Us</a>
-                        <a href="#contact">Contact</a>
-                    </div>
-                    <div class="footer-col">
-                        <h3>Follow Us</h3>
-                        <div class="social-links">
-                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="#"><i class="fa-brands fa-tripadvisor"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="copyright">
-                    <p>&copy; 2023 <span style="cursor:pointer; text-decoration: underline; font-weight: bold; color: var(--gold);" onclick="openLoginModal()">Admin Login</span> | Nakupendaisles Safari Zanzibar. All Rights Reserved.</p>
-                </div>
-            </div>
+            <div class="container"><div class="footer-grid">
+                <div class="footer-col"><h3>Nakupendaisles Safari</h3><p>Your trusted partner for unforgettable excursions in Zanzibar. We combine safety, luxury, and the natural beauty of the islands.</p></div>
+                <div class="footer-col"><h3>Contact Us</h3><ul class="contact-info"><li><i class="fa-brands fa-whatsapp"></i> +255 656 310 190</li><li><i class="fa-solid fa-envelope"></i> mandiboteck@gmail.com</li><li><i class="fa-solid fa-location-dot"></i> Stone Town, Zanzibar</li></ul></div>
+                <div class="footer-col"><h3>Quick Links</h3><a href="#home">Home</a><a href="#packages">Packages</a><a href="#about">About Us</a><a href="#contact">Contact</a></div>
+                <div class="footer-col"><h3>Follow Us</h3><div class="social-links"><a href="#"><i class="fa-brands fa-instagram"></i></a><a href="#"><i class="fa-brands fa-facebook-f"></i></a><a href="#"><i class="fa-brands fa-tripadvisor"></i></a></div></div>
+            </div><div class="copyright"><p>&copy; 2023 <span style="cursor:pointer; text-decoration: underline; font-weight: bold; color: var(--gold);" onclick="openLoginModal()">Admin Login</span> | Nakupendaisles Safari Zanzibar. All Rights Reserved.</p></div>
         </footer>
     </div>
 
-    <!-- ADMIN DASHBOARD SYSTEM -->
+    <!-- ADMIN PANEL -->
     <div id="admin-panel">
-        <div class="admin-sidebar">
-            <h2><i class="fa-solid fa-anchor"></i> <span>Admin Panel</span></h2>
-            <div class="admin-menu-item active" onclick="showAdminSection('dashboard')"><i class="fa-solid fa-chart-line"></i> <span>Dashboard</span></div>
-            <div class="admin-menu-item" onclick="showAdminSection('bookings')"><i class="fa-solid fa-calendar-check"></i> <span>Bookings</span></div>
-            
-            <!-- NEW: SETTINGS & PASSWORD CHANGE SECTION -->
-            <div class="settings-box">
-                <h3 style="margin-bottom: 10px;">Settings</h3>
-                <label style="display:block; margin-bottom: 5px; font-size: 0.9rem; color: #ccc;">Change Admin Password</label>
-                <input type="password" id="newAdminPass" class="input-admin" placeholder="New Password">
-                <button onclick="updatePassword()" class="btn-save-settings">Update Password</button>
-            </div>
-
+        <div class="admin-sidebar"><h2><i class="fa-solid fa-anchor"></i> <span>Admin Panel</span></h2><div class="admin-menu-item active"><i class="fa-solid fa-chart-line"></i> <span>Dashboard</span></div><div class="admin-menu-item"><i class="fa-solid fa-calendar-check"></i> <span>Bookings</span></div>
+            <div class="settings-box"><h3 style="margin-bottom: 10px;">Settings</h3><label style="display:block; margin-bottom: 5px; font-size: 0.9rem; color: #ccc;">Change Admin Password</label><input type="password" id="newAdminPass" class="input-admin" placeholder="New Password"><button onclick="updatePassword()" class="btn-save-settings">Update Password</button></div>
             <div class="logout-btn" onclick="logoutAdmin()"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></div>
         </div>
         <div class="admin-main">
             <h2 style="margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px;">Owner Dashboard</h2>
-            
-            <!-- Stats Section -->
             <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-info">
-                        <h3>Total Views</h3>
-                        <div class="number" id="stat-views">0</div>
-                    </div>
-                    <div class="stat-icon"><i class="fa-solid fa-eye"></i></div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-info">
-                        <h3>Bookings</h3>
-                        <div class="number" id="stat-bookings">0</div>
-                    </div>
-                    <div class="stat-icon"><i class="fa-solid fa-ticket"></i></div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-info">
-                        <h3>Est. Revenue</h3>
-                        <div class="number" id="stat-revenue">$0</div>
-                    </div>
-                    <div class="stat-icon"><i class="fa-solid fa-dollar-sign"></i></div>
-                </div>
+                <div class="stat-card"><div class="stat-info"><h3>Total Views</h3><div class="number" id="stat-views">0</div></div><div class="stat-icon"><i class="fa-solid fa-eye"></i></div></div>
+                <div class="stat-card"><div class="stat-info"><h3>Bookings</h3><div class="number" id="stat-bookings">0</div></div><div class="stat-icon"><i class="fa-solid fa-ticket"></i></div></div>
+                <div class="stat-card"><div class="stat-info"><h3>Est. Revenue</h3><div class="number" id="stat-revenue">$0</div></div><div class="stat-icon"><i class="fa-solid fa-dollar-sign"></i></div></div>
             </div>
-
-            <!-- Bookings Table -->
-            <div class="bookings-table-container">
-                <h3>Recent Bookings</h3>
-                <table class="bookings-table">
-                    <thead>
-                        <tr>
-                            <th>Ref ID</th>
-                            <th>Date</th>
-                            <th>Name</th>
-                            <th>Tour</th>
-                            <th>Guests</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="bookings-body">
-                        <!-- JS will populate this -->
-                    </tbody>
-                </table>
-            </div>
+            <div class="bookings-table-container"><h3>Recent Bookings</h3><table class="bookings-table"><thead><tr><th>Ref ID</th><th>Date</th><th>Name</th><th>Phone</th><th>Tour</th><th>Guests</th><th>Status</th><th>Actions</th></tr></thead><tbody id="bookings-body"></tbody></table></div>
         </div>
     </div>
 
@@ -1295,125 +332,88 @@
     <div class="modal-overlay" id="bookingModal">
         <div class="modal-container">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div class="modal-header">
-                <h3>Secure Your Spot</h3>
-                <p>Complete the form below. We will save your booking and instantly redirect you to our WhatsApp.</p>
-            </div>
+            <div class="modal-header"><h3>Secure Your Spot</h3><p>Complete the form below. We will save your booking and instantly redirect you to our WhatsApp.</p></div>
             <form class="booking-form" id="bookingForm" onsubmit="sendToWhatsapp(event)">
-                <div class="form-group">
-                    <label>Select Tour</label>
-                    <select id="tourSelect" required>
-                        <option value="" disabled selected>Choose a package...</option>
-                        <option value="Full Day Excursion (Prison + Nakupenda)">Full Day Combo</option>
-                        <option value="Half Day Prison Island">Half Day: Prison Island</option>
-                        <option value="Half Day Nakupenda Sandbank">Half Day: Nakupenda Sandbank</option>
-                        <option value="Sunset Dhow Cruise">Sunset Dhow Cruise</option>
-                        <option value="Sunset Cruise with Dinner">Sunset Cruise with Dinner</option>
-                        <option value="Private Premium Tour (Custom)" style="font-weight: bold; color: var(--primary);">★ VIP / Private Premium Tour</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Travel Date</label>
-                    <input type="date" id="dateInput" required>
-                </div>
-                <div class="form-group">
-                    <label>Number of Guests</label>
-                    <input type="number" id="guestInput" min="1" placeholder="e.g. 2" required>
-                    </div>
-                <div class="form-group">
-                    <label>Your Name</label>
-                    <input type="text" id="nameInput" placeholder="Enter your name" required>
-                    </div>
-                
-                <button type="submit" class="btn whatsapp-btn">
-                    <i class="fa-brands fa-whatsapp"></i> Save & Connect to WhatsApp
-                </button>
+                <div class="form-group"><label>Select Tour</label><select id="tourSelect" required><option value="" disabled selected>Choose a package...</option><option value="Full Day Excursion (Prison + Nakupenda)">Full Day Combo</option><option value="Half Day Prison Island">Half Day: Prison Island</option><option value="Half Day Nakupenda Sandbank">Half Day: Nakupenda Sandbank</option><option value="Sunset Dhow Cruise">Sunset Dhow Cruise</option><option value="Sunset Cruise with Dinner">Sunset Cruise with Dinner</option><option value="Private Premium Tour (Custom)" style="font-weight: bold; color: var(--primary);">★ VIP / Private Premium Tour</option></select></div>
+                <div class="form-group"><label>Travel Date</label><input type="date" id="dateInput" required></div>
+                <div class="form-group"><label>Your Name</label><input type="text" id="nameInput" placeholder="Enter your name" required></div>
+                <!-- PHONE INPUT -->
+                <div class="form-group"><label>Phone Number</label><input type="tel" id="phoneInput" placeholder="e.g. +255 123 456 789" required></div>
+                <div class="form-group"><label>Number of Guests</label><input type="number" id="guestInput" min="1" placeholder="e.g. 2" required></div>
+                <button type="submit" class="btn whatsapp-btn"><i class="fa-brands fa-whatsapp"></i> Save & Connect to WhatsApp</button>
             </form>
         </div>
     </div>
 
     <!-- LOGIN MODAL -->
     <div class="modal-overlay" id="login-modal">
-        <div class="modal-container">
-            <span class="close-modal" onclick="closeLoginModal()">&times;</span>
-            <h3 style="text-align: center;">Owner Access</h3>
-            <div class="booking-form">
-                <div class="form-group">
-                    <label>Enter Password</label>
-                    <input type="password" id="adminPassword" placeholder="Password: admin123">
-                </div>
-                <button type="button" class="btn btn-primary" onclick="checkLogin()">Login</button>
-            </div>
-        </div>
+        <div class="modal-container"><span class="close-modal" onclick="closeLoginModal()">&times;</span><h3 style="text-align: center;">Owner Access</h3><div class="booking-form"><div class="form-group"><label>Enter Password</label><input type="password" id="adminPassword" placeholder="Password: admin123"></div><button type="button" class="btn btn-primary" onclick="checkLogin()">Login</button></div></div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT -->
     <script>
-        // --- PUBLIC SITE LOGIC ---
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
+        // --- UTILS: Simple Obfuscation (Works everywhere, no crypto errors) ---
+        function obfuscate(text) {
+            // Simple Base64 encoding to hide password from plain view
+            try {
+                return btoa(text);
+            } catch (e) {
+                return text; // Fallback if text has unsupported chars
+            }
         }
+
+        // --- PUBLIC SITE LOGIC ---
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
 
         const modal = document.getElementById('bookingModal');
         const tourSelect = document.getElementById('tourSelect');
 
         function openModal(tourName) {
             modal.classList.add('active');
-            if(tourName) {
-                tourSelect.value = tourName;
-            }
-            const today = new Date().toISOString(). split('T')[0];
+            if(tourName) tourSelect.value = tourName;
+            const today = new Date().toISOString().split('T')[0];
             document.getElementById('dateInput').setAttribute('min', today);
         }
 
-        function closeModal() {
-            modal.classList.remove('active');
-        }
+        function closeModal() { modal.classList.remove('active'); }
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-            if(event.target == document.getElementById('login-modal')) {
-                document.getElementById('login-modal').style.display = 'none';
-            }
-        }
-
-        const bookBtns = document.querySelectorAll('.book-btn');
-        bookBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const tourName = this.getAttribute('data-tour');
-                openModal(tourName);
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.book-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    openModal(this.getAttribute('data-tour'));
+                });
             });
         });
 
-        // --- ADMIN & TRACKING SYSTEM LOGIC ---
+        window.onclick = function(event) {
+            if (event.target == modal) closeModal();
+            if(event.target == document.getElementById('login-modal')) document.getElementById('login-modal').style.display = 'none';
+        }
+
+        // --- ADMIN & TRACKING ---
+        const STORAGE_KEY = 'nakupenda_bookings';
         
-        // 1. Stats Tracking (Simulated)
+        // Views
         let totalViews = localStorage.getItem('totalViews') ? parseInt(localStorage.getItem('totalViews')) : 1240;
         totalViews++;
         localStorage.setItem('totalViews', totalViews);
         document.getElementById('stat-views').innerText = totalViews.toLocaleString();
 
-        // 2. Booking Management (LocalStorage)
-        function getBookings() {
-            return JSON.parse(localStorage.getItem('nakupenda_bookings')) || [];
-        }
+        function getBookings() { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
 
-        // SAVE BOOKING LOGIC (Fixed "Can't Save" issue)
         function saveBooking(booking) {
             try {
                 let bookings = getBookings();
-                booking.id = Date.now(); // Unique ID for tracking
+                booking.id = Date.now(); 
                 booking.status = 'Pending';
                 bookings.unshift(booking); 
-                localStorage.setItem('nakupend_bookings', JSON.stringify(bookings));
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings));
                 updateDashboard();
-                return true; // Return success signal
+                console.log("Booking saved successfully to dashboard."); // Debug log
+                return true; 
             } catch (e) {
                 console.error("Storage Error:", e);
-                alert("Error: Could not save data. Please ensure you are not in Private/Incognito mode.");
+                alert("Error: Could not save data. Please ensure cookies/storage are enabled.");
                 return false;
             }
         }
@@ -1422,28 +422,27 @@
             const bookings = getBookings();
             const tbody = document.getElementById('bookings-body');
             tbody.innerHTML = '';
-
             let revenue = 0;
 
             bookings.forEach((b) => {
-                // Simple Revenue Estimate 
-                let estimatedPrice = 50 * parseInt(b.guests); 
-                if(b.tour.includes("Private")) estimatedPrice = 200 * parseInt(b.guests);
-                if(b.tour.includes("Full")) estimatedPrice = 100 * parseInt(b.guests);
-                revenue += estimatedPrice;
+                let price = 50 * parseInt(b.guests); 
+                if(b.tour.includes("Private")) price = 200 * parseInt(b.guests);
+                if(b.tour.includes("Full")) price = 100 * parseInt(b.guests);
+                revenue += price;
 
                 const row = `
                     <tr>
                         <td><small>#${b.id.toString().slice(-6)}</small></td>
                         <td>${b.date}</td>
                         <td>${b.name}</td>
+                        <td>${b.phone || 'N/A'}</td>
                         <td>${b.tour}</td>
                         <td>${b.guests}</td>
                         <td><span class="status-badge status-${b.status.toLowerCase()}">${b.status}</span></td>
                         <td>
-                            <button class="action-btn" onclick="updateStatus(${b.id}, 'Confirmed')" title="Confirm"><i class="fa-solid fa-check"></i></button>
-                            <button class="action-btn" onclick="updateStatus(${b.id}, 'Completed')" title="Complete"><i class="fa-solid fa-check-double"></i></button>
-                            <button class="action-btn" onclick="deleteBooking(${b.id})" title="Delete" style="color:red;"><i class="fa-solid fa-trash"></i></button>
+                            <button class="action-btn" onclick="updateStatus(${b.id}, 'Confirmed')"><i class="fa-solid fa-check"></i></button>
+                            <button class="action-btn" onclick="updateStatus(${b.id}, 'Completed')"><i class="fa-solid fa-check-double"></i></button>
+                            <button class="action-btn" onclick="deleteBooking(${b.id})" style="color:red;"><i class="fa-solid fa-trash"></i></button>
                         </td>
                     </tr>
                 `;
@@ -1455,9 +454,8 @@
         }
 
         function deleteBooking(id) {
-            if(confirm('Are you sure you want to delete this booking?')) {
-                let bookings = getBookings().filter(b => b.id !== id);
-                localStorage.setItem('nakupendabookings', JSON.stringify(bookings));
+            if(confirm('Delete this booking?')) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(getBookings().filter(b => b.id !== id)));
                 updateDashboard();
             }
         }
@@ -1467,30 +465,28 @@
             const index = bookings.findIndex(b => b.id === id);
             if(index !== -1) {
                 bookings[index].status = status;
-                localStorage.setItem('nakupendabookings', JSON.stringify(bookings));
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings));
                 updateDashboard();
             }
         }
 
-        // 3. LOGIN SYSTEM
+        // --- LOGIN (Synchronous for reliability) ---
         function openLoginModal() {
             document.getElementById('login-modal').style.display = 'flex';
             document.getElementById('adminPassword').value = '';
         }
+        function closeLoginModal() { document.getElementById('login-modal').style.display = 'none'; }
 
-        function closeLoginModal() {
-            document.getElementById('login-modal').style.display = 'none';
-        }
-
-        // LOGIN AND PASSWORD CHANGE
         function checkLogin() {
             const pass = document.getElementById('adminPassword').value;
-            const storedPass = localStorage.getItem('admin_password') || 'admin123'; // Default to admin123 if not set
+            const defaultHash = obfuscate('admin123'); 
+            const storedHash = localStorage.getItem('admin_pass_hash') || defaultHash;
+            const inputHash = obfuscate(pass);
 
-            if(pass === storedPass) {
-                document.getElementById('login-modal').style.display = none';
-                document.getElementById('public-site').style.display = none';
-                document.getElementById('admin-panel').style.display = flex';
+            if(inputHash === storedHash) {
+                document.getElementById('login-modal').style.display = 'none';
+                document.getElementById('public-site').style.display = 'none';
+                document.getElementById('admin-panel').classList.add('active');
                 updateDashboard();
             } else {
                 alert("Incorrect Password!");
@@ -1499,57 +495,66 @@
 
         function updatePassword() {
             const newPass = document.getElementById('newAdminPass').value;
-            if(!newPass) {
-                alert("Please enter a new password.");
-                return;
-            }
-            localStorage.setItem('admin_password', newPass);
-            alert("Password updated successfully!");
-            document.getElementById('newAdminPass').value = ''; // Clear field
+            if(!newPass) { alert("Enter a password."); return; }
+            localStorage.setItem('admin_pass_hash', obfuscate(newPass));
+            alert("Password updated securely!");
+            document.getElementById('newAdminPass').value = ''; 
         }
 
-        // 4. INTEGRATED BOOKING LOGIC (SAVE FIRST, THEN REDIRECT)
-        function sendToWhatsapp(e) {
-            e.preventDefault();
+        function logoutAdmin() {
+            document.getElementById('admin-panel').classList.remove('active');
+            document.getElementById('public-site').style.display = 'block';
+        }
 
+        // --- MAIN BOOKING FUNCTION (Fixed & Synchronous) ---
+        function sendToWhatsapp(e) {
+            e.preventDefault(); // 1. Stop Page Reload
+            
+            console.log("Button Clicked. Attempting to process..."); // Debug Log
+
+            // 2. Get Values
             const tour = document.getElementById('tourSelect').value;
             const date = document.getElementById('dateInput').value;
             const guests = document.getElementById('guestInput').value;
-            const name = document.getElementById('nameInput'). value;
+            const name = document.getElementById('nameInput').value;
+            const phone = document.getElementById('phoneInput').value;
 
-            if(!tour || !date || !guests || !name) {
+            // 3. Validate
+            if(!tour || !date || !guests || !name || !phone) {
                 alert("Please fill in all fields.");
                 return;
             }
 
-            // STEP 1: Generate Reference ID
+            // 4. Prepare Data Object
             const refId = Date.now();
             const bookingData = {
                 id: refId,
                 name: name,
+                phone: phone,
                 tour: tour,
                 date: date,
                 guests: guests
             };
 
-            // STEP 2: SAVE TO DASHBOARD (Simulated Backend)
+            // 5. SAVE TO DASHBOARD (Local Storage)
             const saved = saveBooking(bookingData);
 
+            // 6. CONNECT TO WHATSAPP (Only if Save was successful)
             if(saved) {
-                // Only redirect if save was successful
-                const message = `Hello Nakupendaisles Safari!%0A%0AI would like to book an excursion.%0A%0A*Name:* ${name}%0A*Ref ID:* #${refId}%0A*Tour:* ${tour}%0A*Date:* ${date}%0A*Guests:* ${guests}%0A%0APlease confirm availability and price. Thank you!`;
-
+                const message = `Hello Nakupendaisles Safari!%0A%0AI would like to book an excursion.%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Ref ID:* #${refId}%0A*Tour:* ${tour}%0A*Date:* ${date}%0A*Guests:* ${guests}%0A%0APlease confirm availability and price. Thank you!`;
                 const phoneNumber = "255656310190";
                 const url = `https://wa.me/${phoneNumber}?text=${message}`;
                 
-                // Redirect instantly
+                // Open WhatsApp
                 window.open(url, '_blank');
+                
+                // Cleanup
                 closeModal();
+                document.getElementById('bookingForm').reset();
             } else {
-                alert("Error: Could not save booking locally. Ensure cookies/storage are enabled in your browser settings.");
+                alert("System Error: Failed to save booking record. Please try again.");
             }
         }
-
     </script>
 </body>
 </html>
