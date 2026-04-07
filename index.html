@@ -95,8 +95,8 @@
         .bubble { position: absolute; bottom: -20px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; animation: rise 10s infinite ease-in; box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
         .bubble:nth-child(1) { left: 10%; width: 20px; height: 20px; animation-duration: 8s; }
         .bubble:nth-child(2) { left: 20%; width: 15px; height: 15px; animation-duration: 12s; }
-        .bubble:nth-child(3) { left: 35%; width: 25px; height: 25px; animation-duration: 10s; }
-        .bubble:nth-child(4) { left: 50%; width: 10px; height: 10px; animation-duration: 15s; }
+        .bubble:nth-child(3) { left: 35%; width: 25px; height: 25px; animation-duration: 10px; }
+        .bubble:nth-child(4) { left: 50%; width: 10px; height: 10px; animation-duration: 15px; }
         .bubble:nth-child(5) { left: 65%; width: 18px; height: 18px; animation-duration: 9s; }
         .bubble:nth-child(6) { left: 80%; width: 22px; height: 22px; animation-duration: 11s; }
         .bubble:nth-child(7) { left: 90%; width: 14px; height: 14px; animation-duration: 14s; }
@@ -120,10 +120,72 @@
         .package-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         .package-card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); position: relative; display: flex; flex-direction: column; }
         .package-card:hover { transform: translateY(-10px); }
-        .badge { position: absolute; top: 20px; right: 20px; background: var(--accent); color: var(--white); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; z-index: 10; }
-        .card-img { height: 250px; overflow: hidden; }
+        .badge { position: absolute; top: 20px; right: 20px; background: var(--accent); color: var(--white); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; z-index: 20; }
+        
+        /* CARD IMAGE STYLES */
+        .card-img { height: 250px; overflow: hidden; position: relative; background: #000; }
         .card-img img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
         .package-card:hover .card-img img { transform: scale(1.1); }
+
+        /* --- CINEMATIC VIDEO AD STYLES --- */
+        .video-ad-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .ad-slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            z-index: 1;
+        }
+
+        .ad-slide.active { opacity: 1; z-index: 2; }
+        
+        /* Ken Burns Effect for Video Feel */
+        .ad-slide.active { animation: zoomPan 6s ease-out forwards; }
+        @keyframes zoomPan {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .ad-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            z-index: 3;
+        }
+
+        .ad-text-container {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 4;
+            color: #fff;
+        }
+
+        .ad-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+        
+        .ad-quote span { color: var(--gold); font-style: italic; }
+
+        .ad-slide.active .ad-quote { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+
+        /* CARD CONTENT */
         .card-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
         .card-content h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--primary-dark); }
         .card-desc { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; }
@@ -260,10 +322,81 @@
             <div class="container">
                 <div class="section-title"><span>Our Best Sellers</span><h2>Curated Excursion Packages</h2></div>
                 <div class="package-grid">
-                    <div class="package-card"><div class="badge">Most Popular</div><div class="card-img"><img src="https://z-cdn-media.chatglm.cn/files/20807368-5c0b-4492-a110-9059bfc5de58.jpg?auth_key=1875487284-02d3404ac7054b939398abcafe0ee78a-0-de5cf08dce27f46f8702ff22d86fb5ad" alt="Full Day"></div><div class="card-content"><h3>Full Day Combo</h3><p class="card-desc">The ultimate experience. Visit Prison Island to see Giant Tortoises, then relax at Nakupenda Sandbank.</p><ul class="includes-list"><li><i class="fa-solid fa-check"></i> Prison Island & Tortoises</li><li><i class="fa-solid fa-check"></i> Nakupenda Sandbank Visit</li><li><i class="fa-solid fa-check"></i> Snorkeling Equipment</li><li><i class="fa-solid fa-check"></i> Seafood BBQ</li></ul><div class="card-footer"><div class="price">$$ <span>/ person</span></div><button class="btn btn-primary book-btn" data-tour="Full Day Excursion (Prison + Nakupenda)">Book Now</button></div></div></div>
-                    <div class="package-card"><div class="card-img"><img src="https://z-cdn-media.chatglm.cn/files/736113d7-d0ff-4fd3-bf45-798f6fd9646d.jpg?auth_key=1875487284-0a2d711b5bd44dc2ac6e40bca4740ba3-0-ed808a97e8d38456c5c288b2df5f09c3" alt="Prison Island"></div><div class="card-content"><h3>Half Day: Prison Island</h3><p class="card-desc">A relaxing trip to Prison Island on a traditional dhow. Explore history and nature.</p><ul class="includes-list"><li><i class="fa-solid fa-check"></i> Traditional Dhow Transfer</li><li><i class="fa-solid fa-check"></i> Giant Aldabra Tortoises</li><li><i class="fa-solid fa-check"></i> Snorkeling Gear</li><li><i class="fa-solid fa-check"></i> Soft Drinks & Water</li></ul><div class="card-footer"><div class="price">$ <span>/ person</span></div><button class="btn btn-primary book-btn" data-tour="Half Day Prison Island">Book Now</button></div></div></div>
-                    <div class="package-card"><div class="card-img"><img src="https://z-cdn-media.chatglm.cn/files/ee790fcd-4fd8-4bf3-9356-8dcef2bda347.jpg?auth_key=1875487284-d175a09f11aa4768bc22d1dc84925bbd-0-44f76d4aea8e7f186db04e006fdf9202" alt="Nakupenda"></div><div class="card-content"><h3>Half Day: Nakupenda</h3><p class="card-desc">Pure relaxation on the sandbank. Snorkel in crystal clear waters and enjoy a massive seafood lunch.</p><ul class="includes-list"><li><i class="fa-solid fa-check"></i> Traditional Dhow Transfer</li><li><i class="fa-solid fa-check"></i> Snorkeling Service</li><li><i class="fa-solid fa-check"></i> Seafood BBQ Lunch</li><li><i class="fa-solid fa-check"></i> Seasonal Tropical Fruits</li></ul><div class="card-footer"><div class="price">$$ <span>/ person</span></div><button class="btn btn-primary book-btn" data-tour="Half Day Nakupenda Sandbank">Book Now</button></div></div></div>
-                    <div class="package-card"><div class="card-img"><img src="https://z-cdn-media.chatglm.cn/files/f42a49c5-bc15-4723-9dd7-618397497eca.jpg?auth_key=1875487284-39d3b171271d48a8944bf9873dea164d-0-d7cf308a9d7e389da682ac600af88a00" alt="Sunset"></div><div class="card-content"><h3>Sunset Dhow Cruise</h3><p class="card-desc">Sail along the <strong>Forodhani sea front</strong>. Watch the sun go down over Stone Town with drinks in hand.</p><ul class="includes-list"><li><i class="fa-solid fa-check"></i> Sailing Traditional Dhow</li><li><i class="fa-solid fa-check"></i> View of Stone Town from Sea</li><li><i class="fa-solid fa-check"></i> Snacks & Bites</li><li><i class="fa-solid fa-check"></i> Soft Drinks, Local Beer, Wine</li></ul><div class="card-footer"><div class="price">$ <span>/ person</span></div><button class="btn btn-primary book-btn" data-tour="Sunset Dhow Cruise">Book Now</button></div></div></div>
+                    
+                    <!-- PACKAGE 1: FULL DAY COMBO (UPDATED QUOTES) -->
+                    <div class="package-card">
+                        <div class="badge">Most Popular</div>
+                        <div class="card-img">
+                            <div class="video-ad-wrapper" id="ad-container">
+                                <div class="ad-overlay"></div>
+                                <div class="ad-text-container">
+                                    <h4 class="ad-quote" id="ad-quote-text">Loading...</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Full Day Combo</h3>
+                            <p class="card-desc">The ultimate experience. Visit Prison Island to see Giant Tortoises, then relax at Nakupenda Sandbank.</p>
+                            <ul class="includes-list"><li><i class="fa-solid fa-check"></i> Prison Island & Tortoises</li><li><i class="fa-solid fa-check"></i> Nakupenda Sandbank Visit</li><li><i class="fa-solid fa-check"></i> Snorkeling Equipment</li><li><i class="fa-solid fa-check"></i> Seafood BBQ</li></ul>
+                            <div class="card-footer"><div class="price">$$ <span>/ person</span></div><button class="btn btn-primary book-btn" data-tour="Full Day Excursion (Prison + Nakupenda)">Book Now</button></div>
+                        </div>
+                    </div>
+
+                    <!-- PACKAGE 2: HALF DAY PRISON ISLAND (UPDATED QUOTES) -->
+                    <div class="package-card">
+                        <div class="card-img">
+                            <div class="video-ad-wrapper" id="ad-container-prison">
+                                <div class="ad-overlay"></div>
+                                <div class="ad-text-container">
+                                    <h4 class="ad-quote" id="ad-quote-text-prison">Loading...</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Half Day: Prison Island</h3>
+                            <p class="card-desc">A relaxing trip to Prison Island on a traditional dhow. Explore history and nature.</p>
+                            <ul class="includes-list"><li><i class="fa-solid fa-check"></i> Traditional Dhow Transfer</li><li><i class="fa-solid fa-check"></i> Giant Aldabra Tortoises</li><li><i class="fa-solid fa-check"></i> Snorkeling Gear</li><li><i class="fa-solid fa-check"></i> Soft Drinks & Water</li></ul>
+                            <div class="card-footer"><div class="price">$ <span>/ person</span></div><button class="btn btn-primary book-btn" data-tour="Half Day Prison Island">Book Now</button></div>
+                        </div>
+                    </div>
+
+                    <!-- PACKAGE 3: HALF DAY NAKUPENDA (UPDATED QUOTES) -->
+                    <div class="package-card">
+                        <div class="card-img">
+                            <div class="video-ad-wrapper" id="ad-container-nakupenda">
+                                <div class="div class="ad-overlay"></div>
+                                <div class="ad-text-container">
+                                    <h4 class="ad-quote" id="ad-quote-text-nakupenda">Loading...</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Half Day: Nakupenda</h3>
+                            <p class="card-desc">Pure relaxation on the sandbank. Snorkel in crystal clear waters and enjoy a massive seafood lunch.</p>
+                            <ul class="includes-list"><li><i class="fa-solid fa-check"></i> Traditional Dhow Transfer</li><li><i class="fa-solid fa-check"></i> Snorkeling Service</li><li><i class="fa-solid fa-check"></i> Seafood BBQ Lunch</li><li><i class="fa-solid fa-check"></i> Seasonal Tropical Fruits</li></ul>
+                            <div class="card-footer"><div class="price">$$ <span>/ person</span></div><button class="btn btn-primary book-btn" data-tour="Half Day Nakupenda Sandbank">Book Now</button></div>
+                        </div>
+                    </div>
+
+                    <!-- PACKAGE 4: SUNSET DHOW CRUISE (UPDATED DOCUMENTARY QUOTES) -->
+                    <div class="package-card">
+                        <div class="card-img">
+                            <!-- SUNSET DOCUMENTARY STYLE SLIDESHOW -->
+                            <div class="video-ad-wrapper" id="ad-container-sunset">
+                                <div class="ad-overlay"></div>
+                                <div class="ad-text-container">
+                                    <h4 class="ad-quote" id="ad-quote-text-sunset">Loading...</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3>Sunset Dhow Cruise</h3>
+                            <p class="card-desc">Sail along the <strong>Forodhani sea front</strong>. Watch the sun go down over Stone Town with drinks in hand.</p>
+                            <ul class="includes-list"><li><i class="fa-solid fa-check"></i> Sailing Traditional Dhow</li><li><i class="fa-solid fa-check"></i> View of Stone Town from Sea</li><li><i class="fa-solid fa-check"></i> Snacks & Bites</li><li><i class="fa-solid fa-check"></i> Soft Drinks, Local Beer, Wine</li></ul>
+                            <div class="card-footer"><div class="price">$ <span>/ person</span></div><button class="btn btn-primary book-btn" data-tour="Sunset Dhow Cruise">Book Now</button></div>
+                        </div>
+                    </div>
+
                     <div class="package-card"><div class="badge">Premium</div><div class="card-img"><img src="https://z-cdn-media.chatglm.cn/files/56b23bbb-7354-41d0-890f-f1a28ab12386.jpg?auth_key=1875487284-5056a9f6c3eb47048d500c85c8a3e3bd-0-219afb681b19b5cc3ed3d152ba9c3631" alt="Dinner"></div><div class="card-content"><h3>Sunset Cruise with Dinner</h3><p class="card-desc">Our most exclusive service. Enjoy the sunset cruise followed by a gourmet dinner on board.</p><ul class="includes-list"><li><i class="fa-solid fa-check"></i> Everything in Sunset Cruise</li><li><i class="fa-solid fa-check"></i> Gourmet Dinner Service</li><li><i class="fa-solid fa-check"></i> Live Music & Violin</li><li><i class="fa-solid fa-check"></i> Romantic Atmosphere</li></ul><div class="card-footer"><div class="price">$$$ <span>/ person</span></div><button class="btn btn-primary book-btn" data-tour="Sunset Cruise with Dinner">Book Now</button></div></div></div>
                 </div>
             </div>
@@ -337,7 +470,6 @@
                 <div class="form-group"><label>Select Tour</label><select id="tourSelect" required><option value="" disabled selected>Choose a package...</option><option value="Full Day Excursion (Prison + Nakupenda)">Full Day Combo</option><option value="Half Day Prison Island">Half Day: Prison Island</option><option value="Half Day Nakupenda Sandbank">Half Day: Nakupenda Sandbank</option><option value="Sunset Dhow Cruise">Sunset Dhow Cruise</option><option value="Sunset Cruise with Dinner">Sunset Cruise with Dinner</option><option value="Private Premium Tour (Custom)" style="font-weight: bold; color: var(--primary);">★ VIP / Private Premium Tour</option></select></div>
                 <div class="form-group"><label>Travel Date</label><input type="date" id="dateInput" required></div>
                 <div class="form-group"><label>Your Name</label><input type="text" id="nameInput" placeholder="Enter your name" required></div>
-                <!-- PHONE INPUT -->
                 <div class="form-group"><label>Phone Number</label><input type="tel" id="phoneInput" placeholder="e.g. +255 123 456 789" required></div>
                 <div class="form-group"><label>Number of Guests</label><input type="number" id="guestInput" min="1" placeholder="e.g. 2" required></div>
                 <button type="submit" class="btn whatsapp-btn"><i class="fa-brands fa-whatsapp"></i> Save & Connect to WhatsApp</button>
@@ -352,15 +484,234 @@
 
     <!-- JAVASCRIPT -->
     <script>
-        // --- UTILS: Simple Obfuscation (Works everywhere, no crypto errors) ---
-        function obfuscate(text) {
-            // Simple Base64 encoding to hide password from plain view
-            try {
-                return btoa(text);
-            } catch (e) {
-                return text; // Fallback if text has unsupported chars
-            }
+        // --- CINEMATIC VIDEO AD LOGIC (FULL DAY) ---
+        const adSlides = [
+            { image: 'https://z-cdn-media.chatglm.cn/files/af30f5f5-d6bc-4b94-96ed-32ae323d037f.jpg?auth_key=1875590887-cb6bca812e12463291a997cd6e771633-0-eed8ae400dabc9499e0365db8ed009fd', quote: 'Visit the island on our <span>Traditional Dhow</span>.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/6b22be49-899a-4d90-bf35-f41d418a031f.jpg?auth_key=1875590887-f36569beffdc435285564450acf84f5a-0-a8695db122b68ca6ee22a659af739ea3', quote: 'See the island grow larger as we <span>Approach</span>.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/4e4f782a-b1d8-43af-9710-a207a157eb85.jpg?auth_key=1875590887-05fefd6ff7b1494aa181f750d83b0c35-0-d35173a3f7d1668a98ea12a523b6d61d', quote: 'Meet the <span>Ancient Giants</span> of the Sea.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/309e5a23-ea64-4e80-abb0-071e88a0c1bb.jpg?auth_key=1875590887-44c038c88c7b436badd1d71ef7eb4aea-0-bc2de4e7a0b67a583b59ca8c8cba4c11', quote: 'Your Private <span>Paradise</span> in the Sun.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/26169a1b-4dd1-4261-bb38-fc28b3e335fc.jpg?auth_key=1875590887-0e1cc6eb3a724f6993f5961e36b2f676-0-ed1055878e123cde8188cd4e33c6f990', quote: 'Discover the Magic <span>Beneath the Waves</span>.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/4e4706df-aeb6-4078-8ffb-4cfcdf35140e.jpg?auth_key=1875590887-bf56c29661db47019ada52067f8c62ac-0-9d18910e4e4b846f583e1590fd4d2837', quote: 'Swim with a kaleidoscope of <span>colorful fish</span>.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/226a27a8-8cf9-44c5-b3ef-198390df68ad.jpg?auth_key=1875590887-fe6b00502a694023a0704573a9a23aa9-0-65f2d11d3d59a5435e0cd9e685860c29', quote: 'Enjoy our freshly grilled BBQ on the <span>Sand</span>.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/adf14ff2-8cae-4e4f-a341-af5f209508df.jpg?auth_key=1875590887-9e3e41d09410490e9e359e2936074d45-0-f83997e9c1b214ef32fdf1e5f3e313e5', quote: 'Watch the chefs grill the freshest <span>Catch</span> of the day.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/08ae8ec0-a100-4949-8eb7-98d88119caae.jpg?auth_key=1875590887-9270171c7e254f20a8c03193d98a4f7a-0-5941d5b888aa70f0b7ba404d3899cfab', quote: 'Feast your eyes on this royal <span>Seafood Platter</span>.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/a86d07c0-555a-4f3a-89f2-acc3d91d555c.jpg?auth_key=1875590887-e36f24547bb542b891938f2355d08105-0-a7ec908fa520890e8866edb3724155da', quote: 'Nature\'s <span>Untouched Sanctuary</span>.' }
+        ];
+
+        function initAd() {
+            const container = document.getElementById('ad-container');
+            const textEl = document.getElementById('ad-quote-text');
+            let currentIndex = 0;
+
+            adSlides.forEach((slide, index) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.classList.add('ad-slide');
+                if(index === 0) slideDiv.classList.add('active');
+                slideDiv.style.backgroundImage = `url('${slide.image}')`;
+                container.insertBefore(slideDiv, container.firstChild);
+            });
+
+            textEl.innerHTML = adSlides[0].quote;
+
+            setInterval(() => {
+                const slides = document.querySelectorAll('#ad-container .ad-slide');
+                slides[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % adSlides.length;
+                slides[currentIndex].classList.add('active');
+                textEl.style.opacity = 0; textEl.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    textEl.innerHTML = adSlides[currentIndex].quote;
+                    textEl.style.opacity = 1; textEl.style.transform = 'translateY(0)';
+                }, 500);
+            }, 5000);
         }
+
+        // --- CINEMATIC VIDEO AD LOGIC (PRISON ISLAND) ---
+        const adSlidesPrison = [
+            { image: 'https://z-cdn-media.chatglm.cn/files/b17faeaa-6195-40a5-aa7a-46de7b628b17.jpg?auth_key=1875593763-b7eda0c7add54af19289d83890c80384-0-f561d78c48dbaf4d696f6d7f12403902', quote: 'Setting Sail Towards <span>History</span>.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/6545ec83-24ad-46b2-bed4-4c54c05ebad2.jpg?auth_key=1875593763-d015bfb2446a41ef9e8f798c51691bdc-0-1272d2ea4023712faf999807567951ce', quote: 'See the island grow larger as we <span>Approach</span>.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/bc8d2137-80bc-430c-a050-37ad480c93f1.jpg?auth_key=1875593763-c4fbf3cc605f4f6aa8d9e8792c9a1a1f-0-4795efdfc33f374d5c602550f3e1ce0e', quote: 'Walk on Water to <span>Adventure</span>.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/19aea241-767f-45b1-aaaa-5d56da09abc8.jpg?auth_key=1875593763-b39f92c3c8f34c47a5dd642be72c17d5-0-cfe45135a01240fd3fa1ac8268c694c5', quote: 'Step back in time at the <span>Ruins</span>.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/c616eeb9-ecb3-46f9-a85f-22892a94f417.jpg?auth_key=1875593763-c203ab4945ae4222abcdc8374a08c8b2-0-fba14f99703429bb132f1c74ca0f6e18', quote: 'Meet the <span>Ancient Guardians</span>.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/a5d155ad-92ff-4a79-b38e-57c6d1aa4fae.jpg?auth_key=1875593763-1659ffc68aa34cd49cae02ff642698cc-0-714def7b2393f17ca1b574160ae00eeb', quote: 'Touch the shell of a gentle <span>Giant</span>.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/02c7c6e1-cae1-4ee1-ab08-0afbe402f788.jpg?auth_key=1875593763-dc59c8e0fe194ae28680a5d8703c4702-0-c150881843bec99675aefc459a0f7c9c', quote: 'Search for starfish in the crystal clear <span>Water</span>.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/4b5c1023-32cd-442a-a5d9-f03edbe23865.jpg?auth_key=1875593763-a16737a7e08e45e1a1bb5886663208f8c-0-3b58663d8f44485135cb5d69484695a5', quote: 'Escape to <span>Serenity</span>.' }
+        ];
+
+        function initAdPrison() {
+            const container = document.getElementById('ad-container-prison');
+            const textEl = document.getElementById('ad-quote-text-prison');
+            let currentIndex = 0;
+
+            adSlidesPrison.forEach((slide, index) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.classList.add('ad-slide');
+                if(index === 0) slideDiv.classList.add('active');
+                slideDiv.style.backgroundImage = `url('${slide.image}')`;
+                container.insertBefore(slideDiv, container.firstChild);
+            });
+
+            textEl.innerHTML = adSlidesPrison[0].quote;
+
+            setInterval(() => {
+                const slides = document.querySelectorAll('#ad-container-prison .ad-slide');
+                slides[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % adSlidesPrison.length;
+                slides[currentIndex].classList.add('active');
+                textEl.style.opacity = 0; textEl.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    textEl.innerHTML = adSlidesPrison[currentIndex].quote;
+                    textEl.style.opacity = 1; textEl.style.transform = 'translateY(0)';
+                }, 500);
+            }, 5000);
+        }
+
+        // --- CINEMATIC VIDEO AD LOGIC (NAKUPENDA - UPDATED QUOTES) ---
+        const adSlidesNakupenda = [
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/b0f7d74e-d179-465a-8e66-c9d7787944c5.jpg?auth_key=1875596536-401c8526f93140b5a7f3e38ff93ea4eb-0-7dd7bd8341d7b031f51ab64c3c3e554d',
+                quote: 'Step aboard our <span>Traditional Dhow</span> for a trip to paradise.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/d1801467-2585-42f7-9145-2abde2644c8d.jpg?auth_key=1875596536-1c3d2f0bd85248d794a73368d1f39e4d-0-e27fe2e934a3d083dfb722c6eb25aed9',
+                quote: 'Arrive at your own <span>Private Island</span>.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/8748ee68-ae0b-46ef-91ed-523994d70b61.jpg?auth_key=1875596536-c23dc4695fc8474a904ca4386c181e90-0-b0893b28e9d67e55adabb27eb0466211',
+                quote: 'Surrounded by a kaleidoscope of <span>Tropical Fish</span>.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/5b49f16b-5adb-4ad4-9334-9fc21a9003db.jpg?auth_key=1875596536-619972bdfa9f4788a31df8bcc476988-0-86a53d13272d6c6d6e3a8724c1ca9e41',
+                quote: 'Dive into the <span>Coral Reef</span> Ecosystem.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/ce9f344b-00b5-4b51-88f4-c91e6ffb8da5.jpg?auth_key=1875596536-54a9293e6d634e5eb052719cd407af94-0-a147d6ea477088054568e1b326c1e388',
+                quote: 'Taste the freshest lobster and crab from the <span>Sea</span>.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/de505706-1e4c-409f-9102-63564330d1c5.jpg?auth_key=1875596536-66c1fac79ca242728e3f662cea41048b-0-5f3ac722c3e34573eb836d311540e032',
+                quote: 'Smell the charcoal and taste the fresh <span>BBQ</span>.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/84ab8b69-784b-4a2f-b8f3-fae211d5a4c7.jpg?auth_key=1875596536-2093afa8ebe548ebac2e80476bcf769c-0-f33e6735d0d0ac3cc1f3c4b5050793fb',
+                quote: 'A culinary <span>Masterpiece</span> of seafood awaits.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/9b7b7aed-2ab2-4c2b-a6a9-911900a50f6f.jpg?auth_key=1875596536-918ff8207e3c4b5e87dfda0a70cfd4ea-0-37166cbe040b0e4f3a9e2a50ef7f7030',
+                quote: 'Dine on the <span>Horizon</span>.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/4b109ca7-c89a-4f1d-83f8-ac1b7f81ca9f.jpg?auth_key=1875596536-a454801305a64b8da1af55993891d668-0-41ef7a762e1b2f5c988adad43d31061009',
+                quote: 'Feast on the <span>Sandbank</span>.'
+            }
+        ];
+
+        function initAdNakupenda() {
+            const container = document.getElementById('ad-container-nakupenda');
+            const textEl = document.getElementById('ad-quote-text-nakupenda');
+            let currentIndex = 0;
+
+            adSlidesNakupenda.forEach((slide, index) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.classList.add('ad-slide');
+                if(index === 0) slideDiv.classList.add('active');
+                slideDiv.style.backgroundImage = `url('${slide.image}')`;
+                container.insertBefore(slideDiv, container.firstChild);
+            });
+
+            textEl.innerHTML = adSlidesNakupenda[0].quote;
+
+            setInterval(() => {
+                const slides = document.querySelectorAll('#ad-container-nakupenda .ad-slide');
+                slides[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % adSlidesNakupenda.length;
+                slides[currentIndex].classList.add('active');
+                textEl.style.opacity = 0; textEl.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    textEl.innerHTML = adSlidesNakupenda[currentIndex].quote;
+                    textEl.style.opacity = 1; textEl.style.transform = 'translateY(0)';
+                }, 500);
+            }, 5000);
+        }
+
+        // --- CINEMATIC VIDEO AD LOGIC (SUNSET DHOW - PROFESSIONAL SUNSET STYLE) ---
+        const adSlidesSunset = [
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/06ada9be-c17a-482b-8713-878e1246d653.jpg?auth_key=1875600896-1e736549cf3842e1acd264f986cad543-0-a9d94f139e6d12d0c0827211dec0b482',
+                quote: 'Sail on our <span>Traditional Dhow</span> as the sun begins to set.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/1556fa66-f463-462a-92c6-dd21143b5855.jpg?auth_key=1875600896-798df9badfab45b69c58e126771431a3a-0-58b1133168d0af82c016231c643fb2c3',
+                quote: 'Where the <span>Sky Kisses the Sea</span>.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/2cdf712f-6bef-4574-a39e-555d5f4d236d.jpg?auth_key=1875600896-7601854d2b5f4e668528694389ce8799-0-2855830a045e063eaf4b26caa368238e',
+                quote: 'Nature\'s <span>Living Art</span>.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/bd6f4a25-6871-40b9-959a-04a3944837d8.jpg?auth_key=1875600896-7aa62fe88e3a4d8cb0c2008392730c21-0-cb151f4a825a9dc0e4749653641e0c6d',
+                quote: 'Discover the World <span>Beneath</span>.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/e4101aeb-5406-44dc-9b62-2c37c-21043b5b.jpg?auth_key=1875600896-49adefe115f6430abf9ccb5943b0a650-0-0cf56ae0555d95ef245e9a8a39b9a8a',
+                quote: 'A Feast as the Sun <span>Sets</span>.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/18d96b76-bd5d-4c69-a71b-59a9b89f9b39.jpg?auth_key=1875600896-d66f1611507546e8b1e18d4aa0c807ce-0-5b3b7bb7ead12e2c8c7d28ac83b1b8a2',
+                quote: 'Sizzling <span>Flavors</span> of the Coast.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/e1746808-71e3-4d8e-b4f7-faddcedb126d.jpg?auth_key=1875600896-55fe218407e74a72a1ba1623b0d73863-0-966e43f32ad48565b37305e0004fb816',
+                quote: 'A Culinary <span>Masterpiece</span>.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/568b82a2-3972-4771-8f3f-f006fcb2048a.jpg?auth_key=1875600896-5f97b57ae0b94dee8bee5dfe200904df-0-4307b31868658980252c40133268dcc1',
+                quote: 'Chasing the <span>Horizon</span>.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/9845d728-8b37-4689-8d2e-3554f0358fbf.jpg?auth_key=1875600896-d9adcc7aaf7643b7b14c2220c9c3a5ab-0-0e6f0a812c47a587f4bdbb3d8dee5bdd',
+                quote: 'Where the Ocean <span>Meets the Sky</span>.'
+            }
+        ];
+
+        function initAdSunset() {
+            const container = document.getElementById('ad-container-sunset');
+            const textEl = document.getElementById('ad-quote-text-sunset');
+            let currentIndex = 0;
+
+            adSlidesSunset.forEach((slide, index) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.classList.add('ad-slide');
+                if(index === 0) slideDiv.classList.add('active');
+                slideDiv.style.backgroundImage = `url('${slide.image}')`;
+                container.insertBefore(slideDiv, container.firstChild);
+            });
+
+            textEl.innerHTML = adSlidesSunset[0].quote;
+
+            setInterval(() => {
+                const slides = document.querySelectorAll('#ad-container-sunset .ad-slide');
+                slides[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % adSlidesSunset.length;
+                slides[currentIndex].classList.add('active');
+                textEl.style.opacity = 0; textEl.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    textEl.innerHTML = adSlidesSunset[currentIndex].quote;
+                    textEl.style.opacity = 1; textEl.style.transform = 'translateY(0)';
+                }, 500);
+            }, 5000);
+        }
+
+        // Initialize All Ads on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            initAd();
+            initAdPrison();
+            initAdNakupenda();
+            initAdSunset();
+        });
+
+        // --- UTILS ---
+        function obfuscate(text) { try { return btoa(text); } catch (e) { return text; } }
 
         // --- PUBLIC SITE LOGIC ---
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
@@ -392,8 +743,6 @@
 
         // --- ADMIN & TRACKING ---
         const STORAGE_KEY = 'nakupenda_bookings';
-        
-        // Views
         let totalViews = localStorage.getItem('totalViews') ? parseInt(localStorage.getItem('totalViews')) : 1240;
         totalViews++;
         localStorage.setItem('totalViews', totalViews);
@@ -409,7 +758,7 @@
                 bookings.unshift(booking); 
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(bookings));
                 updateDashboard();
-                console.log("Booking saved successfully to dashboard."); // Debug log
+                console.log("Booking saved successfully to dashboard."); 
                 return true; 
             } catch (e) {
                 console.error("Storage Error:", e);
@@ -470,7 +819,7 @@
             }
         }
 
-        // --- LOGIN (Synchronous for reliability) ---
+        // --- LOGIN ---
         function openLoginModal() {
             document.getElementById('login-modal').style.display = 'flex';
             document.getElementById('adminPassword').value = '';
@@ -486,7 +835,7 @@
             if(inputHash === storedHash) {
                 document.getElementById('login-modal').style.display = 'none';
                 document.getElementById('public-site').style.display = 'none';
-                document.getElementById('admin-panel').classList.add('active');
+                document.getElementById('admin-panel').style.display = 'flex';
                 updateDashboard();
             } else {
                 alert("Incorrect Password!");
@@ -506,49 +855,32 @@
             document.getElementById('public-site').style.display = 'block';
         }
 
-        // --- MAIN BOOKING FUNCTION (Fixed & Synchronous) ---
+        // --- MAIN BOOKING FUNCTION ---
         function sendToWhatsapp(e) {
-            e.preventDefault(); // 1. Stop Page Reload
-            
-            console.log("Button Clicked. Attempting to process..."); // Debug Log
+            e.preventDefault(); 
+            console.log("Button Clicked. Attempting to process...");
 
-            // 2. Get Values
             const tour = document.getElementById('tourSelect').value;
             const date = document.getElementById('dateInput').value;
             const guests = document.getElementById('guestInput').value;
             const name = document.getElementById('nameInput').value;
             const phone = document.getElementById('phoneInput').value;
 
-            // 3. Validate
             if(!tour || !date || !guests || !name || !phone) {
                 alert("Please fill in all fields.");
                 return;
             }
 
-            // 4. Prepare Data Object
             const refId = Date.now();
-            const bookingData = {
-                id: refId,
-                name: name,
-                phone: phone,
-                tour: tour,
-                date: date,
-                guests: guests
-            };
+            const bookingData = { id: refId, name: name, phone: phone, tour: tour, date: date, guests: guests };
 
-            // 5. SAVE TO DASHBOARD (Local Storage)
             const saved = saveBooking(bookingData);
 
-            // 6. CONNECT TO WHATSAPP (Only if Save was successful)
             if(saved) {
                 const message = `Hello Nakupendaisles Safari!%0A%0AI would like to book an excursion.%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Ref ID:* #${refId}%0A*Tour:* ${tour}%0A*Date:* ${date}%0A*Guests:* ${guests}%0A%0APlease confirm availability and price. Thank you!`;
                 const phoneNumber = "255656310190";
                 const url = `https://wa.me/${phoneNumber}?text=${message}`;
-                
-                // Open WhatsApp
                 window.open(url, '_blank');
-                
-                // Cleanup
                 closeModal();
                 document.getElementById('bookingForm').reset();
             } else {
