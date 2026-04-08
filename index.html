@@ -100,7 +100,7 @@
         .bubble:nth-child(5) { left: 65%; width: 18px; height: 18px; animation-duration: 9s; }
         .bubble:nth-child(6) { left: 80%; width: 22px; height: 22px; animation-duration: 11s; }
         .bubble:nth-child(7) { left: 90%; width: 14px; height: 14px; animation-duration: 14s; }
-        .bubble:nth-child(8) { left: 15%; width: 28px; height: 28px; animation-duration: 13s; }
+        .bubble:nth-child(8) { left: 15%; width: 28px; height: 28px; animation-duration: 13px; }
         .sea-life-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 4; pointer-events: none; overflow: hidden; }
         .creature { position: absolute; opacity: 0.9; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5)); object-fit: cover; }
         .fish-extra-1 { width: 60px; height: 60px; border-radius: 50%; top: 20%; left: -80px; animation: swim-right 14s linear infinite; border: 2px solid rgba(255,255,255,0.4); }
@@ -175,13 +175,22 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
             line-height: 1.4;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            /* UPDATED: Premium Cold Gold Color */
+            color: #FFD700; 
+            /* Shadow is kept dark for readability on light sky images, but the fill is purely gold */
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.85); 
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.8s ease;
         }
         
-        .ad-quote span { color: var(--gold); font-style: italic; }
+        /* UPDATED: Span style to contrast beautifully with the gold text */
+        .ad-quote span { 
+            color: #FFFFFF; 
+            font-style: normal; 
+            font-weight: 700; 
+            text-shadow: 0 0 10px var(--gold), 0 0 20px rgba(212, 175, 55, 0.5);
+        }
 
         .ad-slide.active .ad-quote { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
 
@@ -323,7 +332,7 @@
                 <div class="section-title"><span>Our Best Sellers</span><h2>Curated Excursion Packages</h2></div>
                 <div class="package-grid">
                     
-                    <!-- PACKAGE 1: FULL DAY COMBO (UPDATED QUOTES) -->
+                    <!-- PACKAGE 1: FULL DAY COMBO -->
                     <div class="package-card">
                         <div class="badge">Most Popular</div>
                         <div class="card-img">
@@ -342,7 +351,7 @@
                         </div>
                     </div>
 
-                    <!-- PACKAGE 2: HALF DAY PRISON ISLAND (UPDATED QUOTES) -->
+                    <!-- PACKAGE 2: HALF DAY PRISON ISLAND -->
                     <div class="package-card">
                         <div class="card-img">
                             <div class="video-ad-wrapper" id="ad-container-prison">
@@ -360,7 +369,7 @@
                         </div>
                     </div>
 
-                    <!-- PACKAGE 3: HALF DAY NAKUPENDA (UPDATED QUOTES) -->
+                    <!-- PACKAGE 3: HALF DAY NAKUPENDA -->
                     <div class="package-card">
                         <div class="card-img">
                             <div class="video-ad-wrapper" id="ad-container-nakupenda">
@@ -378,10 +387,10 @@
                         </div>
                     </div>
 
-                    <!-- PACKAGE 4: SUNSET DHOW CRUISE (UPDATED DOCUMENTARY QUOTES) -->
+                    <!-- PACKAGE 4: SUNSET DHOW CRUISE (UPDATED WITH NEW IMAGES) -->
                     <div class="package-card">
                         <div class="card-img">
-                            <!-- SUNSET DOCUMENTARY STYLE SLIDESHOW -->
+                            <!-- NEW SLIDESHOW CONTENT -->
                             <div class="video-ad-wrapper" id="ad-container-sunset">
                                 <div class="ad-overlay"></div>
                                 <div class="ad-text-container">
@@ -532,7 +541,7 @@
             { image: 'https://z-cdn-media.chatglm.cn/files/6545ec83-24ad-46b2-bed4-4c54c05ebad2.jpg?auth_key=1875593763-d015bfb2446a41ef9e8f798c51691bdc-0-1272d2ea4023712faf999807567951ce', quote: 'See the island grow larger as we <span>Approach</span>.' },
             { image: 'https://z-cdn-media.chatglm.cn/files/bc8d2137-80bc-430c-a050-37ad480c93f1.jpg?auth_key=1875593763-c4fbf3cc605f4f6aa8d9e8792c9a1a1f-0-4795efdfc33f374d5c602550f3e1ce0e', quote: 'Walk on Water to <span>Adventure</span>.' },
             { image: 'https://z-cdn-media.chatglm.cn/files/19aea241-767f-45b1-aaaa-5d56da09abc8.jpg?auth_key=1875593763-b39f92c3c8f34c47a5dd642be72c17d5-0-cfe45135a01240fd3fa1ac8268c694c5', quote: 'Step back in time at the <span>Ruins</span>.' },
-            { image: 'https://z-cdn-media.chatglm.cn/files/c616eeb9-ecb3-46f9-a85f-22892a94f417.jpg?auth_key=1875593763-c203ab4945ae4222abcdc8374a08c8b2-0-fba14f99703429bb132f1c74ca0f6e18', quote: 'Meet the <span>Ancient Guardians</span>.' },
+            { image: 'https://z-cdn-media.chatglm.cn/files/c616eeb9-ecb3-46f9-a85f-22892a94f417.jpg?auth_key=1875593763-c203ab4945ae4222abcdc8374a08c8b2-0-fba14f99303429bb132f1c74ca0f6e18', quote: 'Meet the <span>Ancient Guardians</span>.' },
             { image: 'https://z-cdn-media.chatglm.cn/files/a5d155ad-92ff-4a79-b38e-57c6d1aa4fae.jpg?auth_key=1875593763-1659ffc68aa34cd49cae02ff642698cc-0-714def7b2393f17ca1b574160ae00eeb', quote: 'Touch the shell of a gentle <span>Giant</span>.' },
             { image: 'https://z-cdn-media.chatglm.cn/files/02c7c6e1-cae1-4ee1-ab08-0afbe402f788.jpg?auth_key=1875593763-dc59c8e0fe194ae28680a5d8703c4702-0-c150881843bec99675aefc459a0f7c9c', quote: 'Search for starfish in the crystal clear <span>Water</span>.' },
             { image: 'https://z-cdn-media.chatglm.cn/files/4b5c1023-32cd-442a-a5d9-f03edbe23865.jpg?auth_key=1875593763-a16737a7e08e45e1a1bb5886663208f8c-0-3b58663d8f44485135cb5d69484695a5', quote: 'Escape to <span>Serenity</span>.' }
@@ -566,7 +575,7 @@
             }, 5000);
         }
 
-        // --- CINEMATIC VIDEO AD LOGIC (NAKUPENDA - UPDATED QUOTES) ---
+        // --- CINEMATIC VIDEO AD LOGIC (NAKUPENDA) ---
         const adSlidesNakupenda = [
             {
                 image: 'https://z-cdn-media.chatglm.cn/files/b0f7d74e-d179-465a-8e66-c9d7787944c5.jpg?auth_key=1875596536-401c8526f93140b5a7f3e38ff93ea4eb-0-7dd7bd8341d7b031f51ab64c3c3e554d',
@@ -634,43 +643,47 @@
             }, 5000);
         }
 
-        // --- CINEMATIC VIDEO AD LOGIC (SUNSET DHOW - PROFESSIONAL SUNSET STYLE) ---
+        // --- CINEMATIC VIDEO AD LOGIC (SUNSET DHOW - UPDATED WITH NEW IMAGES) ---
         const adSlidesSunset = [
             {
-                image: 'https://z-cdn-media.chatglm.cn/files/06ada9be-c17a-482b-8713-878e1246d653.jpg?auth_key=1875600896-1e736549cf3842e1acd264f986cad543-0-a9d94f139e6d12d0c0827211dec0b482',
-                quote: 'Sail on our <span>Traditional Dhow</span> as the sun begins to set.'
+                image: 'https://z-cdn-media.chatglm.cn/files/f6ded2db-f372-48d2-b2e0-d33224cb186c.jpg?auth_key=1875605974-f5c1cead45764945bfd07e61a849b9f2-0-bdedcc8a4e199ceeb963170971f539f1',
+                quote: 'Live <span>Music</span> creates the perfect vibe.'
             },
             {
-                image: 'https://z-cdn-media.chatglm.cn/files/1556fa66-f463-462a-92c6-dd21143b5855.jpg?auth_key=1875600896-798df9badfab45b69c58e126771431a3a-0-58b1133168d0af82c016231c643fb2c3',
-                quote: 'Where the <span>Sky Kisses the Sea</span>.'
+                image: 'https://z-cdn-media.chatglm.cn/files/528c1ed6-132f-4d14-bf03-2c5c9cc889fd.jpg?auth_key=1875605974-303a5d716c5a43dfa4242ce603960a68-0-377d42635a9cf45c488db4fe4f335997',
+                quote: 'Raise a glass to the <span>Sunset</span>.'
             },
             {
-                image: 'https://z-cdn-media.chatglm.cn/files/2cdf712f-6bef-4574-a39e-555d5f4d236d.jpg?auth_key=1875600896-7601854d2b5f4e668528694389ce8799-0-2855830a045e063eaf4b26caa368238e',
-                quote: 'Nature\'s <span>Living Art</span>.'
+                image: 'https://z-cdn-media.chatglm.cn/files/48c7031f-2fbe-4765-9e98-5eaba6e67eec.jpg?auth_key=1875605974-42fe3304a0694d2fa852f918b29bc86e-0-077d62a6bac40ac217d30998f2897ceb',
+                quote: 'Authentic <span>Taarabu</span> violin serenades.'
             },
             {
-                image: 'https://z-cdn-media.chatglm.cn/files/bd6f4a25-6871-40b9-959a-04a3944837d8.jpg?auth_key=1875600896-7aa62fe88e3a4d8cb0c2008392730c21-0-cb151f4a825a9dc0e4749653641e0c6d',
-                quote: 'Discover the World <span>Beneath</span>.'
+                image: 'https://z-cdn-media.chatglm.cn/files/bc1a8373-0b89-4590-8b89-90952115a04a.jpg?auth_key=1875605974-583bc6cdc68f41d2a351b9fa9be49d12-0-38d819672279d6788c8a1dca610873c2',
+                quote: 'Sailing into the <span>Golden Horizon</span>.'
             },
             {
-                image: 'https://z-cdn-media.chatglm.cn/files/e4101aeb-5406-44dc-9b62-2c37c-21043b5b.jpg?auth_key=1875600896-49adefe115f6430abf9ccb5943b0a650-0-0cf56ae0555d95ef245e9a8a39b9a8a',
-                quote: 'A Feast as the Sun <span>Sets</span>.'
+                image: 'https://z-cdn-media.chatglm.cn/files/1749e81f-75b9-411c-a0a9-5fff6ac347a6.jpg?auth_key=1875605974-201e577276ab42448249d0f9d78ee548-0-e88216f829a884b48ee976b3297eb2a4',
+                quote: 'Delight in <span>Gourmet Snacks</span> and drinks.'
             },
             {
-                image: 'https://z-cdn-media.chatglm.cn/files/18d96b76-bd5d-4c69-a71b-59a9b89f9b39.jpg?auth_key=1875600896-d66f1611507546e8b1e18d4aa0c807ce-0-5b3b7bb7ead12e2c8c7d28ac83b1b8a2',
-                quote: 'Sizzling <span>Flavors</span> of the Coast.'
+                image: 'https://z-cdn-media.chatglm.cn/files/6f249f78-50aa-4016-a028-5e7d58e97a2f.jpg?auth_key=1875605974-39490886b76040eea6b8e911640c4e03-0-4933ee272cef013d298de348a9309e81',
+                quote: 'Create <span>Memories</span> that last forever.'
             },
             {
-                image: 'https://z-cdn-media.chatglm.cn/files/e1746808-71e3-4d8e-b4f7-faddcedb126d.jpg?auth_key=1875600896-55fe218407e74a72a1ba1623b0d73863-0-966e43f32ad48565b37305e0004fb816',
-                quote: 'A Culinary <span>Masterpiece</span>.'
+                image: 'https://z-cdn-media.chatglm.cn/files/74784b45-11bf-44b4-a8a6-038dc6c03d4c.jpg?auth_key=1875605974-075050aac6ca4ce2a56cb675efbfe34f-0-a554d9c0cce2a638817312915ef3c6c3',
+                quote: 'The unique sound of <span>Zanzibar</span>.'
             },
             {
-                image: 'https://z-cdn-media.chatglm.cn/files/568b82a2-3972-4771-8f3f-f006fcb2048a.jpg?auth_key=1875600896-5f97b57ae0b94dee8bee5dfe200904df-0-4307b31868658980252c40133268dcc1',
-                quote: 'Chasing the <span>Horizon</span>.'
+                image: 'https://z-cdn-media.chatglm.cn/files/d7952ca9-5004-40b8-90b4-7f42a5314338.jpg?auth_key=1875605974-65b942f97e974aa49a229878ab92c984-0-c20e00c9279310745c163eebe92ba443',
+                quote: 'Chilled <span>Champagne</span> awaits you.'
             },
             {
-                image: 'https://z-cdn-media.chatglm.cn/files/9845d728-8b37-4689-8d2e-3554f0358fbf.jpg?auth_key=1875600896-d9adcc7aaf7643b7b14c2220c9c3a5ab-0-0e6f0a812c47a587f4bdbb3d8dee5bdd',
-                quote: 'Where the Ocean <span>Meets the Sky</span>.'
+                image: 'https://z-cdn-media.chatglm.cn/files/2633d491-ae4e-4064-8bcb-d6e46c7cdcf9.jpg?auth_key=1875605974-43750d7614b34002a3857403994acefc-0-92eb157f0e37c45c9e5d878dbce600d2',
+                quote: 'A festive <span>Atmosphere</span> on the water.'
+            },
+            {
+                image: 'https://z-cdn-media.chatglm.cn/files/674d3389-7a18-4835-adaa-c1e078969070.jpg?auth_key=1875605974-fd42b15f39784d269b8b7bdfe332dd7f-0-f739906a708659c2f9fbc4b7d17a3d10',
+                quote: 'The perfect <span>Romantic</span> setting.'
             }
         ];
 
